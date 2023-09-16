@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (max-width: 479px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .inner {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .wrapper {
+    position: relative;
+  }
+}

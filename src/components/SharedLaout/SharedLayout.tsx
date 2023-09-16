@@ -1,20 +1,14 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import { AppBar } from "../";
+
+import css from "./SharedLayout.module.css";
 
 export const SharedLayout: React.FC = () => {
   return (
-    <div>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <p>Nav link</p>
-            </li>
-            <li>
-              <p>Nav link</p>
-            </li>
-          </ul>
-        </nav>
+    <div className={css.container}>
+      <header className={css.header}>
+        <AppBar />
       </header>
 
       <main>
