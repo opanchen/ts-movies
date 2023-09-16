@@ -5,10 +5,14 @@
   --bgc-color-header: #dde6ee;
 }
 
+[data-theme="dark"] {
+  --bgc-color-header: rgb(64, 63, 63);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,4 +56,3 @@ a {
   clip-path: inset(50%);
   margin: -1px;
 }
-

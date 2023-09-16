@@ -4,6 +4,10 @@
   padding: 0 15px;
 }
 
+#light .container {
+  background-color: rgb(122, 195, 195);
+}
+
 .header {
   padding: 24px 16px;
   background-color: var(--bgc-color-header);

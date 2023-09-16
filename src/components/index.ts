@@ -5,3 +5,4 @@ export * from "./MainNav/MainNav";
 export * from "./Logo/Logo";
 export * from "./ThemeSwitcher/ThemeSwitcher";
 export * from "./AppBar/AppBar";
+export * from "./ThemeProvider/ThemeProvider";

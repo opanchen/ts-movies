@@ -1,5 +1,11 @@
 .placeholder {
-    width: 32px;
-    height: 32px;
-    background-color: darkblue;
+  width: 32px;
+  height: 32px;
+  background-color: darkblue;
+}
+
+.button {
+  cursor: pointer;
+  border-radius: 12px;
+  border-width: 1px;
 }
