@@ -1,11 +1,18 @@
-.placeholder {
-  width: 32px;
-  height: 32px;
-  background-color: darkblue;
-}
-
 .button {
   cursor: pointer;
   border-radius: 12px;
   border-width: 1px;
+
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 479px) {
+  .button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

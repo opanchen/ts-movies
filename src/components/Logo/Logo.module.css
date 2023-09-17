@@ -1,8 +1,28 @@
-.placeholder {
-    width: 40px;
-    height: 40px;
-    background-color: blueviolet;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+  background-color: rgb(239, 239, 239);
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  width: 64;
+  height: 64;
+}
+
+.label {
+  color: black;
+  text-transform: uppercase;
+  font-weight: 500;
 }
