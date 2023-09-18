@@ -1,0 +1,9 @@
+.section {
+  padding: 32px 0;
+}
+
+.heading {
+  margin-bottom: 32px;
+  text-align: center;
+  color: var(--color-text-main);
+}

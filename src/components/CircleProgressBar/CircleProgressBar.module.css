@@ -1,0 +1,41 @@
+.wrapper {
+  /* outline: 1px dashed tomato; */
+  display: inline-block;
+  border-radius: 50%;
+}
+
+[data-rate="low"] {
+  --color-progress: red;
+}
+[data-rate="middle"] {
+  --color-progress: rgb(214, 208, 25);
+}
+[data-rate="high"] {
+  --color-progress: green;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-background {
+  fill: none;
+  stroke: #ddd;
+  fill: black;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: var(--color-progress);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.circle-text {
+  font-size: 14px;
+  font-weight: bold;
+  stroke: #fff;
+  fill: #fff;
+}

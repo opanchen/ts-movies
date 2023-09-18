@@ -2,11 +2,22 @@
 /* bring in normalize.css styles */
 
 :root {
-  --bgc-color-header: #dde6ee;
+  --bgc-primary: rgb(239, 239, 239);
+  --bgc-secondary: #dde6ee;
+  --color-text-primary: #777;
+  --color-text-secondary: rgb(0, 128, 128);
+  --color-text-main: #000;
+  --color-accent: #369ebb;
 }
 
 [data-theme="dark"] {
-  --bgc-color-header: rgb(64, 63, 63);
+  /* --bgc-color-header: rgb(64, 63, 63); */
+  --bgc-primary: #09161c;
+  --bgc-secondary: rgb(34, 45, 51);
+  --color-text-primary: rgba(255, 255, 255, 0.5);
+  --color-text-secondary: rgb(0, 128, 128);
+  --color-text-main: #fff;
+  --color-accent: #369ebb;
 }
 
 body {

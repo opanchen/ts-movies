@@ -6,3 +6,6 @@ export * from "./Logo/Logo";
 export * from "./ThemeSwitcher/ThemeSwitcher";
 export * from "./AppBar/AppBar";
 export * from "./ThemeProvider/ThemeProvider";
+export * from "./MovieList/MovieList";
+export * from "./MovieList/MovieListItem/MovieListItem";
+export * from "./CircleProgressBar/CircleProgressBar";

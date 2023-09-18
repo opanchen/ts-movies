@@ -2,6 +2,7 @@
   outline: 1px dashed tomato;
   margin: 0 auto;
   padding: 0 15px;
+  background-color: var(--bgc-primary);
 }
 
 #light .container {
@@ -10,7 +11,7 @@
 
 .header {
   padding: 24px 16px;
-  background-color: var(--bgc-color-header);
+  background-color: var(--bgc-secondary);
 }
 
 @media screen and (min-width: 480px) {
