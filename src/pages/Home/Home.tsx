@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MovieList } from "src/components";
+import { Container, MovieList } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Home.module.css";
 
@@ -49,10 +49,12 @@ const Home: React.FC = () => {
 
   return (
     <section className={css.section}>
-      <h1 className={css.heading}>Popular movies</h1>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
-      {movies && <MovieList movies={movies} />}
+      <Container>
+        <h1 className={css.heading}>Popular movies</h1>
+        {isLoading && <div>Loading...</div>}
+        {error && <div>{error}</div>}
+        {movies && <MovieList movies={movies} />}
+      </Container>
     </section>
   );
 };

@@ -9,3 +9,6 @@ export * from "./ThemeProvider/ThemeProvider";
 export * from "./MovieList/MovieList";
 export * from "./MovieList/MovieListItem/MovieListItem";
 export * from "./CircleProgressBar/CircleProgressBar";
+export * from "./MovieArticle/MovieArticle";
+export * from "./MovieArticle/MovieInfo/MovieInfo";
+export * from "./Container/Container";

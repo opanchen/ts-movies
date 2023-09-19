@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { AppBar } from "../";
+import { AppBar, Container } from "../";
 
 import css from "./SharedLayout.module.css";
 import { useThemeState } from "../../hooks";
@@ -8,10 +8,12 @@ import { useThemeState } from "../../hooks";
 export const SharedLayout: React.FC = () => {
   const { theme } = useThemeState();
   return (
-    <div data-theme={theme}>
-      <div className={css.container}>
+    <div data-theme={theme} className={css.layout}>
+      <div>
         <header className={css.header}>
-          <AppBar />
+          <Container>
+            <AppBar />
+          </Container>
         </header>
 
         <main>
