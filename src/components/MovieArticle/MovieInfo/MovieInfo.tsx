@@ -43,6 +43,7 @@ export const MovieInfo: React.FC<Props> = ({
         <h1 className={css.title}>{title}</h1>
         {year && <p className={css.year}>({year})</p>}
       </div>
+      <h2 className="visually-hidden">Main information</h2>
       <p className={css.tagline}>
         &laquo;
         {tagline}&raquo;

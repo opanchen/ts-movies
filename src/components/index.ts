@@ -12,3 +12,5 @@ export * from "./CircleProgressBar/CircleProgressBar";
 export * from "./MovieArticle/MovieArticle";
 export * from "./MovieArticle/MovieInfo/MovieInfo";
 export * from "./Container/Container";
+export * from "./MovieExtraInfo/MovieExtraInfo";
+export * from "./InnerNav/InnerNav";

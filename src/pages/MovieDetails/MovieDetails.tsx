@@ -3,7 +3,7 @@ import {
   // useLocation,
   useParams,
 } from "react-router-dom";
-import { MovieArticle } from "src/components";
+import { MovieArticle, MovieExtraInfo } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 
 const MovieDetails: React.FC = () => {
@@ -36,6 +36,7 @@ const MovieDetails: React.FC = () => {
       {movie && (
         <>
           <MovieArticle movie={movie} />
+          <MovieExtraInfo />
         </>
       )}
       {/* <div>Page with single movie & details...</div> */}
