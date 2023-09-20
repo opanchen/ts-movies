@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/744.a0f7e5ac.chunk.js","mappings":"8HAIA,UAJ2B,WACzB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,uBACd,C","sources":["pages/NotFound/NotFound.tsx"],"sourcesContent":["const NotFound: React.FC = () => {\n  return <div>404: Page Not Found</div>;\n};\n\nexport default NotFound;\n"],"names":["_jsx","children"],"sourceRoot":""}
