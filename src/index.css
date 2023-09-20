@@ -13,7 +13,7 @@
     rgba(239, 239, 239, 1) 20%,
     rgba(239, 239, 239, 0.8) 50%
   );
-  --backdrop-gradient--mobile: linear-gradient(
+  --backdrop-gradient-mobile: linear-gradient(
     to right,
     rgba(239, 239, 239, 1) 20%,
     rgba(239, 239, 239, 0) 50%

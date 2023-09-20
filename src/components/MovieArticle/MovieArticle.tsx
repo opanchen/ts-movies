@@ -7,31 +7,46 @@ type Props = {
   [key: string]: any;
 };
 
+//   title: string;
+//   date: string;
+//   vote: number;
+//   originalTitle: string;
+//   overview: string;
+//   tagline: string;
+//   genres: Array<{ id: number; name: string }>;
+//   countries: Array<{ name: string; [key: string]: any }>;
+//   [key: string]: any;
+
 export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
   const {
     title,
+    original_title: originalTitle,
+    tagline,
     overview,
     release_date: releaseDate,
     genres,
     poster_path: poster,
     backdrop_path: backdrop,
     vote_average: vote,
+    production_countries: countries,
+    production_companies: companies,
   } = movie;
 
   const { width } = useWindowDimensions();
-  const media: "mobile" | "tablet" | "desktop" =
-    width < 480 ? "mobile" : width >= 1200 ? "desktop" : "tablet";
+  const media: "mobile" | "mobile-up" | "tablet" | "desktop" =
+    width < 480
+      ? "mobile"
+      : width >= 480 && width < 768
+      ? "mobile-up"
+      : width >= 1200
+      ? "desktop"
+      : "tablet";
   //   console.log(width);
-
-  const year: string = releaseDate ? releaseDate.slice(0, 4) : "";
 
   const bgImage =
     media === "mobile"
       ? `${moviesAPI.imgBgBaseURL.middle}${backdrop}`
       : `${moviesAPI.imgBgBaseURL.large}${backdrop}`;
-
-  const bgOverlay =
-    "linear - gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4))";
 
   const img = `${moviesAPI.imgBaseURL}${poster}`;
 
@@ -49,18 +64,37 @@ export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
               <div className={css.thumb}>
                 <img className={css.poster} src={img} alt="" />
               </div>
-              {media !== "mobile" && <MovieInfo />}
+              {media !== "mobile" && media !== "mobile-up" && (
+                <MovieInfo
+                  title={title}
+                  originalTitle={originalTitle}
+                  tagline={tagline}
+                  overview={overview}
+                  releaseDate={releaseDate}
+                  vote={vote}
+                  countries={countries}
+                  companies={companies}
+                  genres={genres}
+                />
+              )}
             </div>
           </Container>
         </div>
       </div>
-      {media === "mobile" && (
+      {(media === "mobile" || media === "mobile-up") && (
         <Container>
-          {/* <div className={css.info}>
-          <h1 className={css.title}>{title}</h1>
-          {year !== "" && <p className={css.year}>{year}</p>}
-        </div> */}
-          <MovieInfo />
+          <MovieInfo
+            title={title}
+            originalTitle={originalTitle}
+            tagline={tagline}
+            overview={overview}
+            releaseDate={releaseDate}
+            vote={vote}
+            countries={countries}
+            companies={companies}
+            genres={genres}
+            media={media}
+          />
         </Container>
       )}
     </article>

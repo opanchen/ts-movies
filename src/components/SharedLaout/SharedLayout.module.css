@@ -2,38 +2,7 @@
   background-color: var(--bgc-primary);
 }
 
-.container {
-  /* outline: 1px dashed tomato; */
-  /* margin: 0 auto;
-  padding: 0 15px; */
-  /* background-color: var(--bgc-primary); */
-}
-
-/* #light .container {
-  background-color: rgb(122, 195, 195);
-} */
-
 .header {
   padding: 24px 16px;
   background-color: var(--bgc-secondary);
 }
-
-/* @media screen and (min-width: 480px) {
-  container {
-    width: 480px;
-  }
-} */
-
-/* todo Breakpoint TABLET:
-@media screen and (min-width: 768px) {
-  container {
-    width: 768px;
-  }
-} */
-
-/* todo Breakpoint DESKTOP: */
-/* @media screen and (min-width: 1200px) {
-  container {
-    width: 1200px;
-  }
-} */

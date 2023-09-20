@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import {
+  // useLocation,
+  useParams,
+} from "react-router-dom";
 import { MovieArticle } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams();
-  const location = useLocation();
+  // const location = useLocation();
 
   const [movie, setMovie] = useState<{ [key: string]: any } | null>(null);
   // const [error, setError] = useState("");
@@ -17,7 +20,7 @@ const MovieDetails: React.FC = () => {
     const fetchData = async () => {
       try {
         const data = await moviesAPI.getDetails(movieId);
-        console.log(data);
+        // console.log(data);
         setMovie(data);
       } catch (error) {
         console.log(error);

@@ -16,6 +16,7 @@ export const CircleProgressBar: React.FC<Props> = ({
   const dashArray = radius * Math.PI * 2;
   const dashOffset = dashArray - (dashArray * percentage) / 100;
   const rate: string = vote < 5 ? "low" : vote >= 7 ? "high" : "middle";
+  const fontSize = circleWidth / 3;
 
   return (
     <div data-rate={rate} className={css.wrapper}>
@@ -49,6 +50,7 @@ export const CircleProgressBar: React.FC<Props> = ({
           dy="0.3em"
           textAnchor="middle"
           className={css["circle-text"]}
+          style={{ fontSize: fontSize }}
         >
           {/* {percentage}% */}
           {/* {Math.round10(55.55, -1) } */}

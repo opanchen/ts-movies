@@ -36,9 +36,10 @@ const Home: React.FC = () => {
         const data = await moviesAPI.getTrending();
         if (data) setMovies(data?.results);
 
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
+        setError(error);
       } finally {
         setIsLoading(false);
       }

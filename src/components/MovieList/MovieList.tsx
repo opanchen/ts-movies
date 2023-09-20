@@ -23,15 +23,7 @@ type MovieType = {
 };
 
 export const MovieList: React.FC<Props> = ({ movies }: Props) => {
-  console.log(movies[0]);
-  //   const {
-  // id,
-  // poster_path: poster,
-  // name,
-  // title,
-  // release_date: releaseDate,
-  // first_air_date: commonDate,
-  //   } = movies[0];
+  // console.log(movies[0]);
 
   return (
     <>
@@ -56,27 +48,10 @@ export const MovieList: React.FC<Props> = ({ movies }: Props) => {
                 commonDate={commonDate}
                 vote={vote}
               />
-              {/* <p>{id}</p>
-            <p>{title}</p> */}
             </li>
           )
         )}
       </ul>
     </>
   );
-  //   return (
-  //     <>
-  //       <div>
-  //         <MovieListItem
-  //           //   key={id}
-  //           id={id}
-  //           poster={poster}
-  //           name={name}
-  //           title={title}
-  //           releaseDate={releaseDate}
-  //           commonDate={commonDate}
-  //         />
-  //       </div>
-  //     </>
-  //   );
 };
