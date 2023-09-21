@@ -18,7 +18,7 @@ type Props = {
 };
 
 export const CastCard: React.FC<Props> = ({ data }: Props) => {
-  console.log(data);
+  //   console.log(data);
 
   const {
     name,

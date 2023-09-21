@@ -39,7 +39,7 @@ const Home: React.FC = () => {
         // console.log(data);
       } catch (error) {
         console.log(error);
-        setError(error);
+        setError("Something went wrong... Please, try again later.");
       } finally {
         setIsLoading(false);
       }

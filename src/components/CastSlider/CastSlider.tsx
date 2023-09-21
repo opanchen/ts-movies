@@ -23,6 +23,8 @@ type Props = {
 export const CastSlider: React.FC<Props> = ({ items }: Props) => {
   const { width } = useWindowDimensions();
 
+  console.log(items);
+
   const media: "mobile" | "mobile-up" | "tablet" | "tablet-up" | "desktop" =
     width < 480
       ? "mobile"
