@@ -1,6 +1,6 @@
-.section {
-  /* outline: 3px dashed tomato; */
-}
+/* .section {
+  outline: 3px dashed tomato;
+} */
 
 .wrapper {
   /* outline: 2px dashed teal; */
@@ -25,5 +25,14 @@
 
   .wrapper {
     padding: 16px 0;
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 24px 0;
+
+    gap: 24px;
   }
 }

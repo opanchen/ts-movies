@@ -1,0 +1,93 @@
+.slick-track {
+  display: flex;
+  gap: 8px;
+}
+
+.slick-slide {
+  height: auto;
+  display: flex;
+}
+
+.slick-slide > div {
+  height: 100%;
+  display: flex;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: var(--color-text-main);
+  opacity: 0.5;
+  transition: color 250ms linear, opacity 250ms linear;
+}
+
+.slick-prev:hover.slick-prev::before,
+.slick-prev:focus.slick-prev::before,
+.slick-next:hover.slick-next::before,
+.slick-next:focus.slick-next::before {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 480px) {
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 32px;
+  }
+
+  .slick-prev {
+    left: -32px;
+  }
+
+  .slick-next {
+    right: -21px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .slick-track {
+    gap: 16px;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 32px;
+  }
+
+  .slick-prev {
+    left: -40px;
+  }
+
+  .slick-next {
+    right: -29px;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 40px;
+  }
+
+  .slick-prev {
+    left: -48px;
+  }
+
+  .slick-next {
+    right: -28px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 48px;
+  }
+
+  .slick-prev {
+    left: -56px;
+  }
+
+  .slick-next {
+    right: -28px;
+  }
+}

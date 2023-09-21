@@ -3,7 +3,7 @@ import css from "./InnerNav.module.css";
 
 export const InnerNav: React.FC = () => {
   const location = useLocation();
-  console.log(location);
+  //   console.log(location);
 
   const activeTab = location.pathname.includes("cast")
     ? "cast"

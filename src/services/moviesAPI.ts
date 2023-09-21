@@ -51,9 +51,21 @@ const fetchMovieDetails = async (id: string | number) => {
   }
 };
 
+const fetchMovieCast = async (id: string | number) => {
+  const fetchUrl = `/movie/${id}/credits?api_key=${API_KEY}`;
+
+  try {
+    const res = await axios.get(fetchUrl);
+    return res.data;
+  } catch (er) {
+    console.log(er);
+  }
+};
+
 export const moviesAPI = {
   imgBaseURL,
   imgBgBaseURL,
   getTrending: fetchTrending,
   getDetails: fetchMovieDetails,
+  getCast: fetchMovieCast,
 };

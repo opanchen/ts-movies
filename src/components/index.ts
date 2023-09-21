@@ -14,3 +14,5 @@ export * from "./MovieArticle/MovieInfo/MovieInfo";
 export * from "./Container/Container";
 export * from "./MovieExtraInfo/MovieExtraInfo";
 export * from "./InnerNav/InnerNav";
+export * from "./Cast/CastCard/CastCard";
+export * from "./CastSlider/CastSlider";
