@@ -44,10 +44,12 @@ export const MovieInfo: React.FC<Props> = ({
         {year && <p className={css.year}>({year})</p>}
       </div>
       <h2 className="visually-hidden">Main information</h2>
-      <p className={css.tagline}>
-        &laquo;
-        {tagline}&raquo;
-      </p>
+      {tagline && (
+        <p className={css.tagline}>
+          &laquo;
+          {tagline}&raquo;
+        </p>
+      )}
 
       <div className={css["data-box"]}>
         <div className={css["data-box-inner"]}>
