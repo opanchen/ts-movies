@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/74.210b095d.chunk.js","mappings":"4HAIA,UAJyB,WACvB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,2BACd,C","sources":["pages/Movies/Movies.tsx"],"sourcesContent":["const Movies: React.FC = () => {\n  return <div>Movies Page with filter</div>;\n};\n\nexport default Movies;\n"],"names":["_jsx","children"],"sourceRoot":""}
