@@ -18,3 +18,4 @@ export * from "./Cast/CastCard/CastCard";
 export * from "./CastSlider/CastSlider";
 export { default as Trailers } from "./Trailers/Trailers";
 export * from "./VideoPlayer/VideoPlayer";
+export * from "./BackLinkBtn/BackLinkBtn";

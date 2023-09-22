@@ -3,8 +3,14 @@ import {
   // useLocation,
   useParams,
 } from "react-router-dom";
-import { MovieArticle, MovieExtraInfo } from "src/components";
+import {
+  BackLinkBtn,
+  Container,
+  MovieArticle,
+  MovieExtraInfo,
+} from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
+import css from "./MovieDetails.module.css";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams();
@@ -36,7 +42,12 @@ const MovieDetails: React.FC = () => {
   }, [movieId]);
 
   return (
-    <>
+    <div className={css.wrapper}>
+      <div className={css.backlink}>
+        <Container>
+          <BackLinkBtn />{" "}
+        </Container>
+      </div>
       {isLoading && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {movie && (
@@ -45,7 +56,7 @@ const MovieDetails: React.FC = () => {
           <MovieExtraInfo />
         </>
       )}
-    </>
+    </div>
   );
 };
 

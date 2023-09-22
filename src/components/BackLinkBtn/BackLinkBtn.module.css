@@ -1,0 +1,25 @@
+.link {
+  /* outline: 1px dashed tomato; */
+  display: inline-block;
+  padding: 4px 4px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  background-color: var(--bgc-secondary);
+  transition: color 250ms linear;
+}
+
+.link:hover,
+.link:focus,
+.link[data-active="true"] {
+  color: var(--color-text-secondary);
+}
+
+@media screen and (min-width: 480px) {
+  .link {
+    padding: 8px 8px;
+    font-size: 16px;
+  }
+}
