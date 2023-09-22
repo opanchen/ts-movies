@@ -1,0 +1,35 @@
+.player {
+  height: auto !important;
+  width: 100%;
+  aspect-ratio: 16/9;
+
+  /* outline: 2px dashed tomato; */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.wrapper {
+  /* outline: 2px dashed tomato; */
+
+  width: 100%;
+}
+
+@media screen and (min-width: 480px) {
+  .wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 75%;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .wrapper {
+    max-width: 60%;
+  }
+}

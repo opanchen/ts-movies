@@ -26,7 +26,7 @@ export const Reviews: React.FC = () => {
     const fetchData = async () => {
       try {
         const { results } = await moviesAPI.getReviews(movieId);
-        console.log(results);
+        // console.log(results);
 
         if (!results || results.length === 0) {
           setError("There aren't reviews for this movie yet. Try again later.");

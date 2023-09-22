@@ -33,7 +33,7 @@ type TrendingResponse = {
 
 const fetchTrending = async (): Promise<TrendingResponse | undefined> => {
   try {
-    const res = await axios.get(`/trending/all/day?api_key=${API_KEY}`);
+    const res = await axios.get(`/trending/movie/day?api_key=${API_KEY}`);
     return res.data;
   } catch (er) {
     console.log(er);
@@ -73,6 +73,17 @@ const fetchMovieReviews = async (id: string | number) => {
   }
 };
 
+const fetchMovieVideos = async (id: string | number) => {
+  const fetchUrl = `/movie/${id}/videos?api_key=${API_KEY}`;
+
+  try {
+    const res = await axios.get(fetchUrl);
+    return res.data;
+  } catch (er) {
+    console.log(er);
+  }
+};
+
 export const moviesAPI = {
   imgBaseURL,
   imgBgBaseURL,
@@ -80,4 +91,5 @@ export const moviesAPI = {
   getDetails: fetchMovieDetails,
   getCast: fetchMovieCast,
   getReviews: fetchMovieReviews,
+  getVideos: fetchMovieVideos,
 };

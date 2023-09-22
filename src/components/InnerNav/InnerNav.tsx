@@ -9,6 +9,8 @@ export const InnerNav: React.FC = () => {
     ? "cast"
     : location.pathname.includes("reviews")
     ? "reviews"
+    : location.pathname.includes("trailers")
+    ? "trailers"
     : null;
 
   return (
@@ -18,6 +20,7 @@ export const InnerNav: React.FC = () => {
           Cast
         </Link>
       </li>
+
       <li>
         <Link
           to="reviews"
@@ -25,6 +28,16 @@ export const InnerNav: React.FC = () => {
           data-active={activeTab === "reviews"}
         >
           Reviews
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          to="trailers"
+          className={css.link}
+          data-active={activeTab === "trailers"}
+        >
+          Trailer
         </Link>
       </li>
     </ul>
