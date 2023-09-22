@@ -12,8 +12,8 @@ export const Logo: React.FC = () => {
             className={css["logo-img"]}
             src={logoPng}
             alt="logo"
-            width={72}
-            height={72}
+            width={48}
+            height={48}
           />
         </div>
         <p className={css.label}>cinema</p>
