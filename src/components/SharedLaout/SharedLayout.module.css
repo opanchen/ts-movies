@@ -7,9 +7,3 @@
   padding: 8px 0;
   background-color: var(--bgc-secondary);
 }
-
-/* @media screen and (min-width: 768px) {
-  .header {
-    padding: 16px 0 8px 0;
-  }
-} */

@@ -4,6 +4,7 @@
 :root {
   --bgc-primary: rgb(239, 239, 239);
   --bgc-secondary: #dde6ee;
+  --bgc-input: #fff;
   --color-text-primary: #777;
   --color-text-secondary: rgb(0, 128, 128);
   --color-text-main: #000;
@@ -24,6 +25,7 @@
   /* --bgc-color-header: rgb(64, 63, 63); */
   --bgc-primary: rgb(9, 22, 28);
   --bgc-secondary: rgb(34, 45, 51);
+  --bgc-input: rgb(9, 22, 28);
   --color-text-primary: rgba(255, 255, 255, 0.5);
   --color-text-secondary: rgb(0, 128, 128);
   --color-text-main: #fff;
