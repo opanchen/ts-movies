@@ -1,3 +1,5 @@
+import defaultPoster from "../../assets/images/defaultPoster.jpg";
+
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./MovieArticle.module.css";
 import { Container, MovieInfo } from "../";
@@ -48,7 +50,7 @@ export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
       ? `${moviesAPI.imgBgBaseURL.middle}${backdrop}`
       : `${moviesAPI.imgBgBaseURL.large}${backdrop}`;
 
-  const img = `${moviesAPI.imgBaseURL}${poster}`;
+  const img = poster ? `${moviesAPI.imgBaseURL}${poster}` : defaultPoster;
 
   return (
     <article className={css.article}>
