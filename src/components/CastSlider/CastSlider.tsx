@@ -57,13 +57,20 @@ export const CastSlider: React.FC<Props> = ({ items }: Props) => {
 
     default:
       console.log("Error");
-
       break;
   }
 
+  const isInfinite: boolean =
+    (media === "mobile" && items.length <= 3) ||
+    (media === "mobile-up" && items.length <= 4) ||
+    (media === "tablet" && items.length <= 4) ||
+    (media === "tablet-up" && items.length <= 5) ||
+    (media === "desktop" && items.length <= 6)
+      ? false
+      : true;
+
   const settings = {
-    // dots: true,
-    infinite: true,
+    infinite: isInfinite,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,

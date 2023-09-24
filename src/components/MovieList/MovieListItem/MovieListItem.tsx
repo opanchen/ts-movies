@@ -39,9 +39,7 @@ export const MovieListItem: React.FC<Props> = ({
   //   const posterPath = defaultPoster;
 
   const year: string =
-    releaseDate || commonDate
-      ? (releaseDate || commonDate).slice(0, 4)
-      : "unknown";
+    releaseDate || commonDate ? (releaseDate || commonDate).slice(0, 4) : "";
 
   return (
     <>

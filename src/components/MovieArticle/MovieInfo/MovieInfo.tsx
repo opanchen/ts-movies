@@ -56,17 +56,23 @@ export const MovieInfo: React.FC<Props> = ({
           <p className={css["title-original"]}>
             <span className={css.label}>Original title:</span> {originalTitle}
           </p>
-          <p className={css.genres}>
-            <span className={css.label}>Genre:</span>{" "}
-            <span className={css["genres-list"]}>{genreList}</span>
-          </p>
-          <p>
-            <span className={css.label}>Release date:</span> {releaseDate}
-          </p>
-          <p className={css.genres}>
-            <span className={css.label}>Country:</span>{" "}
-            <span className={css["genres-list"]}>{countryList}</span>
-          </p>
+          {genreList && (
+            <p className={css.genres}>
+              <span className={css.label}>Genre:</span>{" "}
+              <span className={css["genres-list"]}>{genreList}</span>
+            </p>
+          )}
+          {releaseDate && (
+            <p className={css["release-date"]}>
+              <span className={css.label}>Release date:</span> {releaseDate}
+            </p>
+          )}
+          {countryList && (
+            <p className={css.countries}>
+              <span className={css.label}>Country:</span>{" "}
+              <span className={css["genres-list"]}>{countryList}</span>
+            </p>
+          )}
         </div>
 
         <div className={css.rate} aria-label="average movie rating integer">
@@ -77,10 +83,12 @@ export const MovieInfo: React.FC<Props> = ({
           />
         </div>
       </div>
-      <p className={css.descr}>
-        <span className={css.label}>Overview: </span>
-        {overview}
-      </p>
+      {overview && (
+        <p className={css.descr}>
+          <span className={css.label}>Overview: </span>
+          {overview}
+        </p>
+      )}
       {companies && (
         <div className={css.companies}>
           <p className={`${css["companies-label"]} ${css.label}`}>

@@ -52,9 +52,7 @@ export const CircleProgressBar: React.FC<Props> = ({
           className={css["circle-text"]}
           style={{ fontSize: fontSize }}
         >
-          {/* {percentage}% */}
-          {/* {Math.round10(55.55, -1) } */}
-          {vote.toFixed(1)}
+          {vote !== 0 ? vote.toFixed(1) : 0}
         </text>
       </svg>
     </div>
