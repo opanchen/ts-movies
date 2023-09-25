@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { moviesAPI } from "src/services/moviesAPI";
 import { CastSlider, FallbackView, Spinner } from "../";
 import css from "./Cast.module.css";
+// import { useWindowDimensions } from "src/hooks";
 
 type CastItemType = {
   name: string;
@@ -21,6 +22,20 @@ const Cast: React.FC = () => {
   const [cast, setCast] = useState<CastType>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  // const { height } = useWindowDimensions();
+
+  useEffect(() => {
+    const foo = () => {
+      window.scrollBy({
+        top: 1000,
+        behavior: "smooth",
+      });
+
+      // window.scrollBy(0, window.innerHeight);
+    };
+
+    foo();
+  }, []);
 
   useEffect(() => {
     if (!movieId) return;
