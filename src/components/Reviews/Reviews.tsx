@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FallbackView } from "../FallbackView/FallbackView";
+import { FallbackView, Spinner } from "../";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Reviews.module.css";
 
@@ -46,7 +46,7 @@ export const Reviews: React.FC = () => {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {reviews.length > 0 && (
         <>

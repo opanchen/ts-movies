@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FallbackView, VideoPlayer } from "../";
+import { FallbackView, Spinner, VideoPlayer } from "../";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Trailers.module.css";
 
@@ -60,7 +60,7 @@ const Trailers: React.FC = () => {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {trailers.length > 0 && (
         <div className={css["trailers-container"]}>

@@ -6,6 +6,7 @@ import {
   FallbackView,
   MovieArticle,
   MovieExtraInfo,
+  Spinner,
 } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./MovieDetails.module.css";
@@ -44,7 +45,7 @@ const MovieDetails: React.FC = () => {
           <BackLinkBtn />{" "}
         </Container>
       </div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {!error && movie && (
         <>

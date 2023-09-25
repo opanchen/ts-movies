@@ -21,3 +21,4 @@ export * from "./VideoPlayer/VideoPlayer";
 export * from "./BackLinkBtn/BackLinkBtn";
 export * from "./SearchForm/SearchForm";
 export * from "./FallbackView/FallbackView";
+export * from "./Spinner/Spinner";

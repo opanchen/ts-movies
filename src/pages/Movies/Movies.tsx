@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Container, FallbackView, MovieList, SearchForm } from "src/components";
+import {
+  Container,
+  FallbackView,
+  MovieList,
+  SearchForm,
+  Spinner,
+} from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Movies.module.css";
 
@@ -69,7 +75,7 @@ const Movies: React.FC = () => {
         <div className={css["form-wrapper"]}>
           <SearchForm onSubmit={onSearchFormSubmit} />
         </div>
-        {isLoading && <div>Loading...</div>}
+        {isLoading && <Spinner />}
         {error && <FallbackView type="error" message={error} />}
         {!error && movies.length === 0 && (
           <FallbackView

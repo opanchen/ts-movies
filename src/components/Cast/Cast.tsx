@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { moviesAPI } from "src/services/moviesAPI";
-import { CastSlider, FallbackView } from "../";
+import { CastSlider, FallbackView, Spinner } from "../";
 import css from "./Cast.module.css";
 
 type CastItemType = {
@@ -54,7 +54,7 @@ const Cast: React.FC = () => {
   return (
     <div className={css.wrapper}>
       <h3 className="visually-hidden">Movie cast</h3>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {cast && cast.length !== 0 && <CastSlider items={cast} />}
     </div>
