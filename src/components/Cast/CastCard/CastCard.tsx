@@ -55,7 +55,7 @@ export const CastCard: React.FC<Props> = ({ data }: Props) => {
     <>
       <div className={css.card}>
         <div className={css.thumb}>
-          <img src={image} alt={`${name} profile`} />
+          <img src={image} width={500} height={750} alt={`${name} profile`} />
         </div>
 
         <div className={css.info}>

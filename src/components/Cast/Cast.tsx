@@ -27,7 +27,7 @@ const Cast: React.FC = () => {
   useEffect(() => {
     const foo = () => {
       window.scrollBy({
-        top: 1000,
+        top: window.innerHeight,
         behavior: "smooth",
       });
 
