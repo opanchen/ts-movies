@@ -1,29 +1,26 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { AppBar, Container } from "../";
-
-import css from "./SharedLayout.module.css";
 import { useThemeState } from "../../hooks";
+import { AppBar, Container } from "../";
+import css from "./SharedLayout.module.css";
 
 export const SharedLayout: React.FC = () => {
   const { theme } = useThemeState();
   return (
     <div data-theme={theme} className={css.layout}>
-      {/* <div className={css["page-body"]}> */}
       <header className={css.header}>
         <Container>
           <AppBar />
         </Container>
       </header>
 
-      <main>
+      <main className={css["main-content"]}>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
       </main>
 
-      <footer className={css.footer}>{/* <div>Page footer</div> */}</footer>
-      {/* </div> */}
+      <footer className={css.footer}></footer>
     </div>
   );
 };
