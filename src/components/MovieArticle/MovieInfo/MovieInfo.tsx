@@ -89,7 +89,7 @@ export const MovieInfo: React.FC<Props> = ({
           {overview}
         </p>
       )}
-      {companies && (
+      {companies && companies.length > 0 && (
         <div className={css.companies}>
           <p className={`${css["companies-label"]} ${css.label}`}>
             Production companies:
