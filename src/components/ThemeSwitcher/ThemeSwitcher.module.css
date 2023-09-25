@@ -7,6 +7,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: var(--color-text-secondary);
+  color: var(--bgc-primary);
+  border: 1px solid var(--color-text-main);
+  transition: background-color 250ms linear, color 250ms linear,
+    border-color 250ms linear;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #efefef;
+  color: var(--color-text-secondary);
+  border-color: black;
 }
 
 @media screen and (max-width: 479px) {

@@ -2,7 +2,7 @@
 /* bring in normalize.css styles */
 
 :root {
-  --bgc-primary: rgb(239, 239, 239);
+  --bgc-primary: #efefef;
   --bgc-secondary: #dde6ee;
   --bgc-input: #fff;
   --color-text-primary: #777;

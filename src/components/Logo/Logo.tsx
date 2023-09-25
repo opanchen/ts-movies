@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import logoPng from "../../assets/images/logo.png";
-
+import { RiMovie2Line } from "react-icons/ri";
 import css from "./Logo.module.css";
 
 export const Logo: React.FC = () => {
@@ -8,13 +7,7 @@ export const Logo: React.FC = () => {
     <Link to="/">
       <div className={css["logo-wrapper"]}>
         <div className={css.thumb}>
-          <img
-            className={css["logo-img"]}
-            src={logoPng}
-            alt="logo"
-            width={48}
-            height={48}
-          />
+          <RiMovie2Line className={css.icon} size={32} />
         </div>
         <p className={css.label}>cinema</p>
       </div>
