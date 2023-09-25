@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { FallbackView } from "../FallbackView/FallbackView";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Reviews.module.css";
 
@@ -47,7 +47,7 @@ export const Reviews: React.FC = () => {
   return (
     <>
       {isLoading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+      {error && <FallbackView type="error" message={error} />}
       {reviews.length > 0 && (
         <>
           <h3 className="visually-hidden">Reviews</h3>

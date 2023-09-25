@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Container, MovieList, SearchForm } from "src/components";
+import { Container, FallbackView, MovieList, SearchForm } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Movies.module.css";
 
@@ -41,7 +41,7 @@ const Movies: React.FC = () => {
 
       try {
         const data = await moviesAPI.getMoviesByQuery(query);
-        console.log(data);
+        // console.log(data);
 
         if (!data || data.results.length === 0) {
           setError(
@@ -70,8 +70,14 @@ const Movies: React.FC = () => {
           <SearchForm onSubmit={onSearchFormSubmit} />
         </div>
         {isLoading && <div>Loading...</div>}
-        {error && <div>{error}</div>}
-        {movies.length !== 0 && <MovieList movies={movies} />}
+        {error && <FallbackView type="error" message={error} />}
+        {!error && movies.length === 0 && (
+          <FallbackView
+            type="init"
+            message="There are no movies yet. Enter your query to find some..."
+          />
+        )}
+        {!error && movies.length !== 0 && <MovieList movies={movies} />}
       </Container>
     </section>
   );

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  // useLocation,
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   BackLinkBtn,
   Container,
+  FallbackView,
   MovieArticle,
   MovieExtraInfo,
 } from "src/components";
@@ -14,8 +12,6 @@ import css from "./MovieDetails.module.css";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams();
-  // const location = useLocation();
-
   const [movie, setMovie] = useState<{ [key: string]: any } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -49,8 +45,8 @@ const MovieDetails: React.FC = () => {
         </Container>
       </div>
       {isLoading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
-      {movie && (
+      {error && <FallbackView type="error" message={error} />}
+      {!error && movie && (
         <>
           <MovieArticle movie={movie} />
           <MovieExtraInfo />

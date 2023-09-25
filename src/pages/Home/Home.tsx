@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, MovieList } from "src/components";
+import { Container, FallbackView, MovieList } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import css from "./Home.module.css";
 
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       <Container>
         <h1 className={css.heading}>Popular movies</h1>
         {isLoading && <div>Loading...</div>}
-        {error && <div>{error}</div>}
+        {error && <FallbackView type="error" message={error} />}
         {movies && <MovieList movies={movies} />}
       </Container>
     </section>

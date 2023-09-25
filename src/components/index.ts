@@ -20,3 +20,4 @@ export { default as Trailers } from "./Trailers/Trailers";
 export * from "./VideoPlayer/VideoPlayer";
 export * from "./BackLinkBtn/BackLinkBtn";
 export * from "./SearchForm/SearchForm";
+export * from "./FallbackView/FallbackView";

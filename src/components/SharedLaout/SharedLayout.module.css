@@ -1,5 +1,9 @@
 .layout {
   background-color: var(--bgc-primary);
+
+  /* display: flex;
+  flex-direction: column; */
+  /* height: 100vh; */
 }
 
 .header {
@@ -7,3 +11,8 @@
   padding: 8px 0;
   background-color: var(--bgc-secondary);
 }
+
+/* .footer {
+  outline: 2px dashed tomato;
+  flex-grow: 1;
+} */

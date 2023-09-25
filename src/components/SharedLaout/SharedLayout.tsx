@@ -9,21 +9,21 @@ export const SharedLayout: React.FC = () => {
   const { theme } = useThemeState();
   return (
     <div data-theme={theme} className={css.layout}>
-      <div>
-        <header className={css.header}>
-          <Container>
-            <AppBar />
-          </Container>
-        </header>
+      {/* <div className={css["page-body"]}> */}
+      <header className={css.header}>
+        <Container>
+          <AppBar />
+        </Container>
+      </header>
 
-        <main>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Outlet />
-          </Suspense>
-        </main>
+      <main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
 
-        <footer></footer>
-      </div>
+      <footer className={css.footer}>{/* <div>Page footer</div> */}</footer>
+      {/* </div> */}
     </div>
   );
 };
