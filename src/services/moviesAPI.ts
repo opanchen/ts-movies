@@ -1,6 +1,10 @@
 import axios from "axios";
 const API_KEY = "ef2f22bb4de9529af845b70082225b5a";
-const imgBaseURL = "https://image.tmdb.org/t/p/w500";
+const imgBaseURL = {
+  middle: "https://image.tmdb.org/t/p/w500",
+  large: "https://image.tmdb.org/t/p/w780",
+};
+
 const imgBgBaseURL = {
   middle: "https://image.tmdb.org/t/p/w1000_and_h450_multi_faces",
   large: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces",

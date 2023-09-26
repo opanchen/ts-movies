@@ -34,7 +34,7 @@ export const MovieListItem: React.FC<Props> = ({
   const location = useLocation();
 
   const posterPath: string = poster
-    ? `${moviesAPI.imgBaseURL}${poster}`
+    ? `${moviesAPI.imgBaseURL.middle}${poster}`
     : defaultPoster;
   //   const posterPath = defaultPoster;
 

@@ -50,7 +50,11 @@ export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
       ? `${moviesAPI.imgBgBaseURL.middle}${backdrop}`
       : `${moviesAPI.imgBgBaseURL.large}${backdrop}`;
 
-  const img = poster ? `${moviesAPI.imgBaseURL}${poster}` : defaultPoster;
+  const img = !poster
+    ? defaultPoster
+    : media === "mobile"
+    ? `${moviesAPI.imgBaseURL.middle}${poster}`
+    : `${moviesAPI.imgBaseURL.large}${poster}`;
 
   return (
     <article className={css.article}>

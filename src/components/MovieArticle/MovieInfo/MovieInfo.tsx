@@ -101,7 +101,7 @@ export const MovieInfo: React.FC<Props> = ({
                   <img
                     src={
                       logo_path
-                        ? `${moviesAPI.imgBaseURL}${logo_path}`
+                        ? `${moviesAPI.imgBaseURL.middle}${logo_path}`
                         : defaultLogo
                     }
                     alt={`${name} logo`}

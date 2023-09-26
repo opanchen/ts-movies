@@ -47,7 +47,7 @@ export const CastCard: React.FC<Props> = ({ data }: Props) => {
   }
 
   const image = profileImg
-    ? `${moviesAPI.imgBaseURL}${profileImg}`
+    ? `${moviesAPI.imgBaseURL.middle}${profileImg}`
     : defaultImg;
   //   console.log("IMAGE PATH: ", image);
 
