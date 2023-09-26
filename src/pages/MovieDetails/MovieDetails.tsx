@@ -25,7 +25,7 @@ const MovieDetails: React.FC = () => {
 
       try {
         const data = await moviesAPI.getDetails(movieId);
-        // console.log(data);
+        console.log(data);
         setMovie(data);
       } catch (error) {
         console.log(error);

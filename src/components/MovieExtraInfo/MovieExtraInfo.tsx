@@ -4,7 +4,7 @@ import { Container, InnerNav } from "../";
 import css from "./MovieExtraInfo.module.css";
 
 export const MovieExtraInfo: React.FC = () => {
-  console.log(window.innerWidth);
+  // console.log(window.innerWidth);
 
   return (
     <section className={css.section}>

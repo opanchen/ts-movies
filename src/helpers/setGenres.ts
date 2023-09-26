@@ -36,7 +36,7 @@ export const setGenres = async () => {
     "en-US": data.genres,
   };
   localStorage.setItem(LS_KEY, JSON.stringify(newStorageData));
-  console.log("Updated local storage with genres data.");
+  //   console.log("Updated local storage with genres data.");
 };
 
 export const getGenres = (ids: GenreIds) => {
