@@ -3,6 +3,7 @@ import { moviesAPI } from "src/services/moviesAPI";
 import { Link, useLocation } from "react-router-dom";
 import { CircleProgressBar } from "src/components";
 import css from "./MovieListItem.module.css";
+import { getGenres } from "src/helpers";
 
 type MovieType = {
   title: string;
@@ -17,6 +18,7 @@ type MovieType = {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  genre_ids: number[];
   [key: string]: any;
 };
 
@@ -30,6 +32,7 @@ export const MovieListItem: React.FC<Props> = ({
   commonDate,
   vote,
   id,
+  genre_ids,
 }: Props) => {
   const location = useLocation();
 
@@ -40,6 +43,10 @@ export const MovieListItem: React.FC<Props> = ({
 
   const year: string =
     releaseDate || commonDate ? (releaseDate || commonDate).slice(0, 4) : "";
+
+  const genres =
+    !genre_ids || genre_ids.length === 0 ? null : getGenres(genre_ids);
+  // console.log("Item genres: ", genres);
 
   return (
     <>
@@ -63,7 +70,21 @@ export const MovieListItem: React.FC<Props> = ({
 
           <div className={css.info}>
             <h2 className={css.title}>{title || name}</h2>
-            <p className={css.year}>{year}</p>
+
+            {genres && typeof genres === "string" ? (
+              <p className={css["info-text"]}>
+                {year !== "" && (
+                  <>
+                    <span className={css.year}>{year} </span> &#124;
+                  </>
+                )}{" "}
+                {genres}
+              </p>
+            ) : (
+              <p className={css["info-text"]}>
+                <span className={css.year}>{year}</span>
+              </p>
+            )}
           </div>
         </article>
       </Link>

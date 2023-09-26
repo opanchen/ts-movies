@@ -29,13 +29,38 @@ type FetchMoviesResponse = {
     popularity: number;
     vote_average: number;
     vote_count: number;
+    genre_ids: number[];
     [key: string]: unknown;
   }[];
+};
+
+type Language = "en-US";
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type FetchGenresResponse = {
+  genres: Genre[];
 };
 
 const fetchTrending = async (): Promise<FetchMoviesResponse | undefined> => {
   try {
     const res = await axios.get(`/trending/movie/day?api_key=${API_KEY}`);
+    return res.data;
+  } catch (er) {
+    console.log(er);
+  }
+};
+
+const fetchGenres = async (
+  language: Language
+): Promise<FetchGenresResponse | undefined> => {
+  try {
+    const res = await axios.get(
+      `/genre/movie/list?api_key=${API_KEY}&language=${language}`
+    );
     return res.data;
   } catch (er) {
     console.log(er);
@@ -102,6 +127,7 @@ const fetchMovieVideos = async (id: string | number) => {
 export const moviesAPI = {
   imgBaseURL,
   imgBgBaseURL,
+  getGenres: fetchGenres,
   getTrending: fetchTrending,
   getMoviesByQuery: fetchMovieByQuery,
   getDetails: fetchMovieDetails,

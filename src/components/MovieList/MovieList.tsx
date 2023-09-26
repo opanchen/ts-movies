@@ -19,6 +19,7 @@ type MovieType = {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  genre_ids: number[];
   [key: string]: unknown;
 };
 
@@ -37,6 +38,7 @@ export const MovieList: React.FC<Props> = ({ movies }: Props) => {
             release_date: releaseDate,
             first_air_date: commonDate,
             vote_average: vote,
+            genre_ids,
           }) => (
             <li key={id} className={css.item}>
               <MovieListItem
@@ -47,6 +49,7 @@ export const MovieList: React.FC<Props> = ({ movies }: Props) => {
                 releaseDate={releaseDate}
                 commonDate={commonDate}
                 vote={vote}
+                genre_ids={genre_ids}
               />
             </li>
           )

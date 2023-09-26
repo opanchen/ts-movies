@@ -16,6 +16,7 @@ type MovieType = {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  genre_ids: number[];
   [key: string]: unknown;
 };
 
