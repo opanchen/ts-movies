@@ -23,6 +23,21 @@ const Trailers: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    const handleScroll = async () => {
+      setTimeout(
+        () =>
+          window.scrollTo({
+            top: window.innerHeight,
+            behavior: "smooth",
+          }),
+        1000
+      );
+    };
+
+    handleScroll();
+  }, []);
+
+  useEffect(() => {
     if (!movieId) return;
 
     const fetchData = async () => {
@@ -59,7 +74,7 @@ const Trailers: React.FC = () => {
   }, [movieId]);
 
   return (
-    <>
+    <div className={css.wrapper}>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {trailers.length > 0 && (
@@ -68,7 +83,7 @@ const Trailers: React.FC = () => {
           <VideoPlayer data={trailers} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

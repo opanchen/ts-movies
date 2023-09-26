@@ -19,6 +19,21 @@ export const Reviews: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const handleScroll = async () => {
+      setTimeout(
+        () =>
+          window.scrollTo({
+            top: 500,
+            behavior: "smooth",
+          }),
+        1000
+      );
+    };
+
+    handleScroll();
+  }, []);
+
+  useEffect(() => {
     if (!movieId) return;
 
     setIsLoading(true);
@@ -45,7 +60,7 @@ export const Reviews: React.FC = () => {
   }, [movieId]);
 
   return (
-    <>
+    <div className={css.wrapper}>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {reviews.length > 0 && (
@@ -69,7 +84,7 @@ export const Reviews: React.FC = () => {
           </ul>
         </>
       )}
-    </>
+    </div>
   );
 };
 

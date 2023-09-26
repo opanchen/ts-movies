@@ -41,6 +41,13 @@
   font-size: 20px;
 }
 
+@media screen and (max-width: 479px) {
+  .overlay {
+    min-width: 176px;
+    height: 120px;
+  }
+}
+
 @media screen and (min-width: 480px) {
   .message {
     gap: 8px;

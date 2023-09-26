@@ -18,6 +18,25 @@
   font-size: 16px;
 }
 
+.suspense {
+  /* outline: 1px dashed tomato; */
+  display: flex;
+  flex-direction: column;
+  min-height: 204px;
+
+  background: var(--suspense-gradient),
+    url(../../assets//images/cinema-element.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left 50% bottom 0;
+}
+
+@media screen and (min-width: 420px) {
+  .suspense {
+    min-height: 256px;
+  }
+}
+
 @media screen and (min-width: 480px) {
   .heading {
     font-size: 20px;
@@ -27,6 +46,10 @@
     padding: 16px 0;
     gap: 16px;
   }
+
+  .suspense {
+    min-height: 264px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -34,5 +57,26 @@
     padding: 24px 0;
 
     gap: 24px;
+  }
+
+  .suspense {
+    min-height: 420px;
+    background: var(--suspense-gradient),
+      url(../../assets//images/cinema-element-x2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left 50% bottom 0;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .suspense {
+    min-height: 480px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .suspense {
+    min-height: 560px;
   }
 }

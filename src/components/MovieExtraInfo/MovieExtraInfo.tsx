@@ -4,6 +4,8 @@ import { Container, InnerNav } from "../";
 import css from "./MovieExtraInfo.module.css";
 
 export const MovieExtraInfo: React.FC = () => {
+  console.log(window.innerWidth);
+
   return (
     <section className={css.section}>
       <Container>
@@ -12,9 +14,11 @@ export const MovieExtraInfo: React.FC = () => {
             Additional information
           </h2>
           <InnerNav />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Outlet />
-          </Suspense>
+          <div className={css.suspense}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
+          </div>
         </div>
       </Container>
     </section>

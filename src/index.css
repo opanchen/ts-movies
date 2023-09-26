@@ -19,6 +19,11 @@
     rgba(239, 239, 239, 1) 20%,
     rgba(239, 239, 239, 0) 50%
   );
+  --suspense-gradient: linear-gradient(
+    to right,
+    rgba(239, 239, 239, 1) 5%,
+    rgba(239, 239, 239, 0.8) 50%
+  );
 }
 
 [data-theme="dark"] {
@@ -39,6 +44,11 @@
     to right,
     rgba(9, 22, 28, 1) 20%,
     rgba(9, 22, 28, 0) 50%
+  );
+  --suspense-gradient: linear-gradient(
+    to right,
+    rgba(9, 22, 28, 1) 5%,
+    rgba(9, 22, 28, 0.8) 50%
   );
 }
 
