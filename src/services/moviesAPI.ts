@@ -34,7 +34,32 @@ type FetchMoviesResponse = {
   }[];
 };
 
-type Language = "en-US";
+type MovieDetails = {
+  adult: false;
+  backdrop_path: string;
+  genres: { id: number; name: string }[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
+  production_countries: { name: string; [key: string]: any };
+  release_date: string;
+  tagline: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+  [key: string]: any;
+};
+
+type Language = "en-US" | "uk-UA";
 
 type Genre = {
   id: number;
@@ -48,6 +73,8 @@ type FetchGenresResponse = {
 const fetchTrending = async (): Promise<FetchMoviesResponse | undefined> => {
   try {
     const res = await axios.get(`/trending/movie/day?api_key=${API_KEY}`);
+    // console.log(res.data);
+
     return res.data;
   } catch (er) {
     console.log(er);
@@ -124,6 +151,23 @@ const fetchMovieVideos = async (id: string | number) => {
   }
 };
 
+const fetchMovieById = async ({
+  id,
+  lang,
+}: {
+  id: string | number;
+  lang: Language;
+}): Promise<MovieDetails | undefined> => {
+  const fetchUrl = `/movie/${id}?api_key=${API_KEY}&language=${lang}`;
+
+  // try {
+  const res = await axios.get(fetchUrl);
+  return res.data;
+  // } catch (er) {
+  //   console.log(er);
+  // }
+};
+
 export const moviesAPI = {
   imgBaseURL,
   imgBgBaseURL,
@@ -134,4 +178,5 @@ export const moviesAPI = {
   getCast: fetchMovieCast,
   getReviews: fetchMovieReviews,
   getVideos: fetchMovieVideos,
+  getMovieById: fetchMovieById,
 };
