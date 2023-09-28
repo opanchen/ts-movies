@@ -21,7 +21,7 @@ interface MoviesState {
   "en-US": MovieItem[];
   "uk-UA": MovieItem[];
   isLoading: boolean;
-  error: null | string;
+  error: null | string | undefined;
 }
 
 const initialState: MoviesState = {
@@ -37,22 +37,34 @@ export const moviesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(addMovie.fulfilled, (state, action) => {
+      .addCase(addMovie.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         // console.log("ACTION: ", action);
-        console.log("PAYLOAD: ", action.payload);
+        console.log("PAYLOAD: ", payload);
 
-        // state["en-US"] = [];
+        const existentItemEn = state["en-US"].find(
+          ({ id }) => id.toString() === payload.id.toString()
+        );
+        const existentItemUk = state["uk-UA"].find(
+          ({ id }) => id.toString() === payload.id.toString()
+        );
+
+        if (existentItemEn || existentItemUk) {
+          return alert("Already exists in your collection");
+        }
+
+        state["en-US"].push(payload["en-US"]);
+        state["uk-UA"].push(payload["uk-UA"]);
       })
-      .addCase(addMovie.pending, (state, action: PayloadAction<any>) => {
+      .addCase(addMovie.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(addMovie.rejected, (state, action) => {
         state.isLoading = false;
         console.log("rj-ACTION: ", action);
         console.log("rj-PAYLOAD: ", action.payload);
-        // state.error = action.payload;
+        state.error = action.payload?.errorMessage;
       });
   },
 });

@@ -157,15 +157,10 @@ const fetchMovieById = async ({
 }: {
   id: string | number;
   lang: Language;
-}): Promise<MovieDetails | undefined> => {
+}): Promise<MovieDetails> => {
   const fetchUrl = `/movie/${id}?api_key=${API_KEY}&language=${lang}`;
-
-  // try {
   const res = await axios.get(fetchUrl);
   return res.data;
-  // } catch (er) {
-  //   console.log(er);
-  // }
 };
 
 export const moviesAPI = {
