@@ -1,0 +1,25 @@
+.section {
+  padding: 8px 0;
+}
+
+.heading {
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--color-text-main);
+}
+
+@media screen and (min-width: 480px) {
+  .section {
+    padding: 16px 0;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .section {
+    padding: 24px 0;
+  }
+
+  .heading {
+    margin-bottom: 24px;
+  }
+}

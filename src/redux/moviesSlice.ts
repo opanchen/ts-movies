@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-import type { RootState } from "./store";
 import { addMovie } from "./operations";
 
 type MovieItem = {
@@ -13,6 +11,11 @@ type MovieItem = {
   poster_path: string;
   release_date: string;
   id: number;
+  media_type: string;
+  original_language: string;
+  popularity: number;
+  vote_average: number;
+  vote_count: number;
   genre_ids: number[];
   [key: string]: any;
 };

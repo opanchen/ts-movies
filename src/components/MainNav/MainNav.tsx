@@ -21,9 +21,9 @@ export const MainNav: React.FC = () => {
 
         <li>
           <NavLink
-            to="/fav"
+            to="/collection"
             className={navLinkClassName}
-            style={{ pointerEvents: "none" }} // !!!!!!!!
+            // style={{ pointerEvents: "none" }} // !!!!!!!!
           >
             Collection
           </NavLink>
