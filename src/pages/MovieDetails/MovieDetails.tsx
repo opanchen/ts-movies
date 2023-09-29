@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { selectCollectionEn } from "src/redux/selectors";
+import { isMovieCollected } from "src/helpers";
+import { useAppSelector } from "src/hooks";
+import { moviesAPI } from "src/services/moviesAPI";
 import {
   BackLinkBtn,
+  CollectBnt,
   Container,
   FallbackView,
   MovieArticle,
   MovieExtraInfo,
   Spinner,
 } from "src/components";
-import { moviesAPI } from "src/services/moviesAPI";
 import css from "./MovieDetails.module.css";
 
 const MovieDetails: React.FC = () => {
@@ -16,6 +20,11 @@ const MovieDetails: React.FC = () => {
   const [movie, setMovie] = useState<{ [key: string]: any } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const collection = useAppSelector(selectCollectionEn);
+  // ! Temporary use only En-collection...
+  const isCollected = isMovieCollected({ id: movieId, arr: collection });
+  // console.log(isCollected);
 
   useEffect(() => {
     if (!movieId) return;
@@ -25,7 +34,7 @@ const MovieDetails: React.FC = () => {
 
       try {
         const data = await moviesAPI.getDetails(movieId);
-        console.log(data);
+        // console.log(data);
         setMovie(data);
       } catch (error) {
         console.log(error);
@@ -40,11 +49,14 @@ const MovieDetails: React.FC = () => {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.backlink}>
-        <Container>
-          <BackLinkBtn />{" "}
-        </Container>
-      </div>
+      <Container>
+        <div className={css["btn-bar"]}>
+          <BackLinkBtn />
+          {!error && movieId && movie && (
+            <CollectBnt id={movieId} isCollected={isCollected} />
+          )}
+        </div>
+      </Container>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {!error && movie && (

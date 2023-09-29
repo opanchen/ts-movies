@@ -20,12 +20,10 @@ type MovieType = {
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
-  [key: string]: unknown;
+  [key: string]: any;
 };
 
 export const MovieList: React.FC<Props> = ({ movies }: Props) => {
-  // console.log(movies[0]);
-
   return (
     <>
       <ul className={css.list}>
