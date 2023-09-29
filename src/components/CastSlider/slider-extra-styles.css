@@ -1,6 +1,7 @@
 .slick-track {
   display: flex;
   gap: 8px;
+  padding: 4px 0;
 }
 
 .slick-slide {

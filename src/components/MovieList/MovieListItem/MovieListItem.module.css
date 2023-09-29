@@ -1,3 +1,12 @@
+.wrapper {
+  /* outline: 1px dashed teal; */
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
 .card {
   /* outline: 3px dashed red; */
   display: flex;
@@ -6,11 +15,12 @@
 
   height: 100%;
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-  background-color: var(--bgc-secondary);
-  transition: rotate 250ms linear;
+  /* overflow: hidden; */
+  /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16); */
+  /* background-color: var(--bgc-secondary); */
+  /* transition: rotate 250ms linear; */
+  /* transition: border-radius 250ms linear; */
 }
 
 .thumb {
@@ -29,7 +39,15 @@
   bottom: -24px;
   left: 50%;
   transform: translateX(-50%);
-  transition: rotate 250ms linear, left 500ms linear;
+  transition: left 500ms linear;
+  /* transition: rotate 250ms linear, left 500ms linear; */
+}
+
+.collect-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 
 .info {
@@ -59,10 +77,11 @@
   font-weight: 500;
 }
 
-.card:hover,
+/* .card:hover,
 .card:focus {
+  border-radius: 0;
   rotate: 3deg;
-}
+} */
 
 .card:hover .title,
 .card:focus .title {
@@ -72,7 +91,7 @@
 
 .card:hover .rate,
 .card:focus .rate {
-  rotate: 3deg;
+  /* rotate: 30deg; */
   left: 90%;
 }
 

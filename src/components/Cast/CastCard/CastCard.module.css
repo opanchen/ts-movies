@@ -1,7 +1,7 @@
 .card {
   font-size: 10px;
   color: var(--color-text-primary);
-  background-color: var(--bgc-secondary);
+  /* background-color: var(--bgc-secondary); */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),

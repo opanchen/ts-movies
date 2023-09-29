@@ -40,26 +40,6 @@
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-/* .poster {
-
-} */
-
-.title {
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-.year {
-  text-align: center;
-  color: var(--color-text-primary);
-}
-
-/* @media screen and (max-width: 479px) {
-  .overlay {
-    background: var(--backdrop-gradient-mobile);
-  }
-} */
-
 @media screen and (max-width: 767px) {
   .overlay {
     background: var(--backdrop-gradient-mobile);

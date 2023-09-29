@@ -37,7 +37,23 @@ const initialState: MoviesState = {
 export const moviesSlice = createSlice({
   name: "movies-collection",
   initialState,
-  reducers: {},
+  reducers: {
+    remove: (state, action: PayloadAction<number | string>) => {
+      const indexEn = state["en-US"].findIndex(
+        ({ id }) => id.toString() === action.payload.toString()
+      );
+      const indexUk = state["uk-UA"].findIndex(
+        ({ id }) => id.toString() === action.payload.toString()
+      );
+
+      if (indexEn === -1 || indexUk === -1) {
+        return alert("Error: this movie isn't collected.");
+      }
+
+      state["en-US"].splice(indexEn, 1);
+      state["uk-UA"].splice(indexUk, 1);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(addMovie.fulfilled, (state, { payload }) => {
@@ -77,4 +93,5 @@ const persistConfig = {
   storage,
 };
 
+export const { remove } = moviesSlice.actions;
 export const moviesReducer = persistReducer(persistConfig, moviesSlice.reducer);

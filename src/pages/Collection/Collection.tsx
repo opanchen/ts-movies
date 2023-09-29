@@ -1,8 +1,7 @@
-import { useState } from "react";
-import css from "./Collection.module.css";
 import { useAppSelector } from "src/hooks";
 import { selectCollectionEn } from "src/redux/selectors";
-import { Container, MovieList } from "src/components";
+import { Container, FallbackView, MovieList } from "src/components";
+import css from "./Collection.module.css";
 
 // type MovieType = {
 //   title: string;
@@ -35,7 +34,14 @@ const Collection: React.FC = () => {
     <section className={css.section}>
       <Container>
         <h1 className={css.heading}>Favorite movies</h1>
-        {movies.length > 0 && <MovieList movies={movies} />}
+        {movies.length > 0 ? (
+          <MovieList movies={movies} />
+        ) : (
+          <FallbackView
+            type="init"
+            message="There are no movies yet. Go to another page and choose some movies to complete the collection."
+          />
+        )}
       </Container>
     </section>
   );

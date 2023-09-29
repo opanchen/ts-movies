@@ -22,3 +22,4 @@ export * from "./BackLinkBtn/BackLinkBtn";
 export * from "./SearchForm/SearchForm";
 export * from "./FallbackView/FallbackView";
 export * from "./Spinner/Spinner";
+export * from "./CollectBnt/CollectBnt";

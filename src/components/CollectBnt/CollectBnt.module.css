@@ -1,0 +1,76 @@
+.collect-btn {
+  /* outline: 1px dashed tomato; */
+  margin-left: auto;
+  display: inline-block;
+  padding: 4px 4px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  background-color: var(--bgc-secondary);
+  transition: color 250ms linear;
+}
+
+.collect-btn:hover,
+.collect-btn:focus {
+  color: var(--color-text-secondary);
+}
+
+@media screen and (min-width: 480px) {
+  .collect-btn {
+    padding: 8px 8px;
+    font-size: 16px;
+  }
+}
+
+.card-collect-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border: none;
+
+  background-color: var(--bgc-secondary-alpha);
+  cursor: pointer;
+}
+
+[data-collected="true"] {
+  color: #a60909;
+}
+[data-collected="false"] {
+  color: green;
+}
+
+.label {
+  display: none;
+  margin-right: auto;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.icon-add,
+.icon-remove {
+  transition: scale 250ms linear;
+}
+
+.card-collect-btn:hover,
+.card-collect-btn:focus {
+  width: 100%;
+}
+
+.card-collect-btn:hover .label,
+.card-collect-btn:focus .label {
+  display: block;
+}
+
+.card-collect-btn:hover .icon-add,
+.card-collect-btn:focus .icon-add,
+.card-collect-btn:hover .icon-remove,
+.card-collect-btn:focus .icon-remove {
+  scale: 0.8;
+}

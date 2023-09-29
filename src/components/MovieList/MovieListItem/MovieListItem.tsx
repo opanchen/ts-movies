@@ -1,9 +1,11 @@
 import defaultPoster from "../../../assets/images/defaultPoster.jpg";
 import { moviesAPI } from "src/services/moviesAPI";
 import { Link, useLocation } from "react-router-dom";
-import { CircleProgressBar } from "src/components";
+import { CircleProgressBar, CollectBnt } from "src/components";
 import css from "./MovieListItem.module.css";
-import { getGenres } from "src/helpers";
+import { getGenres, isMovieCollected } from "src/helpers";
+import { useAppSelector } from "src/hooks";
+import { selectCollectionEn } from "src/redux/selectors";
 
 type MovieType = {
   title: string;
@@ -35,11 +37,13 @@ export const MovieListItem: React.FC<Props> = ({
   genre_ids,
 }: Props) => {
   const location = useLocation();
+  const collection = useAppSelector(selectCollectionEn);
+  const isCollected = isMovieCollected({ id, arr: collection });
+  const isCollectionPage = location.pathname.endsWith("/collection");
 
   const posterPath: string = poster
     ? `${moviesAPI.imgBaseURL.middle}${poster}`
     : defaultPoster;
-  //   const posterPath = defaultPoster;
 
   const year: string =
     releaseDate || commonDate ? (releaseDate || commonDate).slice(0, 4) : "";
@@ -49,7 +53,7 @@ export const MovieListItem: React.FC<Props> = ({
   // console.log("Item genres: ", genres);
 
   return (
-    <>
+    <div className={css.wrapper}>
       <Link to={`/movies/${id}`} state={{ from: location }}>
         <article className={css.card}>
           <div className={css.thumb}>
@@ -59,13 +63,15 @@ export const MovieListItem: React.FC<Props> = ({
               alt={`${title} poster`}
               className={css.image}
             />
-            <div className={css.rate}>
-              <CircleProgressBar
-                //   percentage={60}
-                vote={vote}
-                circleWidth={48}
-              />
-            </div>
+            {!isCollectionPage && (
+              <div className={css.rate}>
+                <CircleProgressBar
+                  //   percentage={60}
+                  vote={vote}
+                  circleWidth={48}
+                />
+              </div>
+            )}
           </div>
 
           <div className={css.info}>
@@ -88,6 +94,9 @@ export const MovieListItem: React.FC<Props> = ({
           </div>
         </article>
       </Link>
-    </>
+      {id && (
+        <CollectBnt isInsideCard={true} isCollected={isCollected} id={id} />
+      )}
+    </div>
   );
 };

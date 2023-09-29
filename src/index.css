@@ -4,6 +4,7 @@
 :root {
   --bgc-primary: #efefef;
   --bgc-secondary: #dde6ee;
+  --bgc-secondary-alpha: rgba(221, 230, 238, 0.8);
   --bgc-input: #fff;
   --color-text-primary: #777;
   --color-text-secondary: #008080;
@@ -30,6 +31,7 @@
   /* --bgc-color-header: rgb(64, 63, 63); */
   --bgc-primary: rgb(9, 22, 28);
   --bgc-secondary: rgb(34, 45, 51);
+  --bgc-secondary-alpha: rgba(34, 45, 51, 0.8);
   --bgc-input: rgb(9, 22, 28);
   --color-text-primary: rgba(255, 255, 255, 0.5);
   --color-text-secondary: #008080;

@@ -68,7 +68,7 @@ export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
           <Container>
             <div className={css["backdrop-inner"]}>
               <div className={css.thumb}>
-                <img className={css.poster} src={img} alt="" />
+                <img className={css.poster} src={img} alt={`${title} poster`} />
               </div>
               {media !== "mobile" && media !== "mobile-up" && (
                 <MovieInfo
