@@ -19,13 +19,5 @@
 .button:focus {
   background-color: #efefef;
   color: var(--color-text-secondary);
-  border-color: black;
-}
-
-@media screen and (max-width: 479px) {
-  .button {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+  border-color: var(--color-text-secondary);
 }

@@ -24,3 +24,4 @@ export * from "./SearchForm/SearchForm";
 export * from "./FallbackView/FallbackView";
 export * from "./Spinner/Spinner";
 export * from "./CollectBnt/CollectBnt";
+export * from "./LangSwitcher/LangSwitcher";

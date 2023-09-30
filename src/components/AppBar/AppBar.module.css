@@ -5,14 +5,31 @@
   justify-content: space-between;
 }
 
+.buttons-bar {
+  display: flex;
+  gap: 4px;
+}
+
 @media screen and (max-width: 479px) {
   .wrapper {
     flex-direction: column;
     justify-content: start;
     gap: 8px;
   }
+
+  .buttons-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .logo-element {
+    align-self: flex-start;
+  }
 }
 
-@media screen and (min-width: 480px) {
-  /*  */
+@media screen and (min-width: 1040px) {
+  .buttons-bar {
+    gap: 16px;
+  }
 }
