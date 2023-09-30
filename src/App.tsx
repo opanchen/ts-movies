@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { SharedLayout, ThemeProvider } from "./components";
+import { LanguageProvider, SharedLayout, ThemeProvider } from "./components";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Movies = lazy(() => import("./pages/Movies/Movies"));
@@ -14,19 +14,21 @@ const Collection = lazy(() => import("./pages/Collection/Collection"));
 function App() {
   return (
     <ThemeProvider>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="trailers" element={<Trailers />} />
+      <LanguageProvider>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+              <Route path="trailers" element={<Trailers />} />
+            </Route>
+            <Route path="/collection" element={<Collection />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/collection" element={<Collection />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
