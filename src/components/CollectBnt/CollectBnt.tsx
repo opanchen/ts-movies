@@ -1,4 +1,4 @@
-import { useAppDispatch } from "src/hooks";
+import { useAppDispatch, useLangState } from "src/hooks";
 import { addMovie } from "src/redux/operations";
 import { remove } from "src/redux/moviesSlice";
 import { BsBookmarkStar } from "react-icons/bs";
@@ -17,6 +17,7 @@ export const CollectBnt: React.FC<Props> = ({
   isInsideCard,
 }: Props) => {
   const dispatch = useAppDispatch();
+  const { lang } = useLangState();
 
   const icon = isCollected ? (
     <BsBookmarkX className={css["icon-remove"]} size={32} />
@@ -28,9 +29,12 @@ export const CollectBnt: React.FC<Props> = ({
     isCollected ? dispatch(remove(id)) : dispatch(addMovie(id));
   };
 
-  const textContent = isCollected
-    ? "Remove from collection"
-    : "Add to collection";
+  const collectedTextContent =
+    lang === "en-US" ? "Remove from collection" : "Видалити з колекції";
+  const collectTaxtContent =
+    lang === "en-US" ? "Add to collection" : "Додати в колекцію";
+
+  const textContent = isCollected ? collectedTextContent : collectTaxtContent;
 
   return isInsideCard ? (
     <button

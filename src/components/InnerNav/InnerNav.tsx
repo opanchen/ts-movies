@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+import { useLangState } from "src/hooks";
 import css from "./InnerNav.module.css";
 
 export const InnerNav: React.FC = () => {
   const location = useLocation();
-  //   console.log(location);
+  const { lang } = useLangState();
 
   const activeTab = location.pathname.includes("cast")
     ? "cast"
@@ -17,7 +18,7 @@ export const InnerNav: React.FC = () => {
     <ul className={css.list}>
       <li>
         <Link to="cast" className={css.link} data-active={activeTab === "cast"}>
-          Cast
+          {lang === "en-US" ? "Cast" : "В ролях"}
         </Link>
       </li>
 
@@ -27,7 +28,7 @@ export const InnerNav: React.FC = () => {
           className={css.link}
           data-active={activeTab === "reviews"}
         >
-          Reviews
+          {lang === "en-US" ? "Reviews" : "Рецензії"}
         </Link>
       </li>
 
@@ -37,7 +38,7 @@ export const InnerNav: React.FC = () => {
           className={css.link}
           data-active={activeTab === "trailers"}
         >
-          Trailer
+          {lang === "en-US" ? "Trailer" : "Трейлер"}
         </Link>
       </li>
     </ul>

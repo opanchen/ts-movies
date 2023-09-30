@@ -1,5 +1,6 @@
 import { useState } from "react";
 import css from "./SearchForm.module.css";
+import { useLangState } from "src/hooks";
 
 type Props = {
   onSubmit: (query: string) => void;
@@ -7,6 +8,7 @@ type Props = {
 
 export const SearchForm: React.FC<Props> = ({ onSubmit }: Props) => {
   const [query, setQuery] = useState<string>("");
+  const { lang } = useLangState();
 
   const handleChangeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.currentTarget.value);
@@ -23,6 +25,16 @@ export const SearchForm: React.FC<Props> = ({ onSubmit }: Props) => {
     setQuery("");
   };
 
+  const placeholderText: string =
+    lang === "en-US"
+      ? "Enter query to search movies..."
+      : "Введіть запит для пошуку...";
+
+  const inputTitle: string =
+    lang === "en-US"
+      ? "Name may contain only letters, apostrophe, dash and spaces."
+      : "Назва може містити лише літери, апостроф, тире та пробіли.";
+
   return (
     <form onSubmit={handleSubmit} className={css.form}>
       <label>
@@ -33,12 +45,12 @@ export const SearchForm: React.FC<Props> = ({ onSubmit }: Props) => {
           className={css.input}
           onChange={handleChangeQuery}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces."
-          placeholder="Enter query to search movies..."
+          title={inputTitle}
+          placeholder={placeholderText}
         />
       </label>
       <button type="submit" className={css["submit-btn"]}>
-        Search
+        {lang === "en-US" ? "Search" : "Пошук"}
       </button>
     </form>
   );

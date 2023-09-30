@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FallbackView, Spinner, VideoPlayer } from "../";
 import { moviesAPI } from "src/services/moviesAPI";
+import { useLangState } from "src/hooks";
 import css from "./Trailers.module.css";
 
 type Video = {
@@ -21,6 +22,7 @@ const Trailers: React.FC = () => {
   const [trailers, setTrailers] = useState<Video[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { lang } = useLangState();
 
   useEffect(() => {
     const handleScroll = async () => {
@@ -54,9 +56,11 @@ const Trailers: React.FC = () => {
         );
 
         if (!trailers || trailers.length === 0) {
-          setError(
-            "There aren't trailers for this movie yet. Try again later."
-          );
+          const errorMessage =
+            lang === "en-US"
+              ? "There aren't trailers for this movie yet. Try again later."
+              : "Наразі трейлери до цього фільму відсутні. Повторіть спробу пізніше.";
+          setError(errorMessage);
           return;
         }
 
@@ -64,14 +68,18 @@ const Trailers: React.FC = () => {
         setTrailers(trailers);
       } catch (error) {
         console.log(error);
-        setError("Something went wrong... Please try again later.");
+        const errorMessage =
+          lang === "en-US"
+            ? "Something went wrong... Please try again later."
+            : "Щось пішло не так... Будь ласка, повторіть спробу пізніше.";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [movieId]);
+  }, [lang, movieId]);
 
   return (
     <div className={css.wrapper}>
@@ -79,7 +87,9 @@ const Trailers: React.FC = () => {
       {error && <FallbackView type="error" message={error} />}
       {trailers.length > 0 && (
         <div className={css["trailers-container"]}>
-          <h3 className="visually-hidden">Trailers</h3>
+          <h3 className="visually-hidden">
+            {lang === "en-US" ? "Trailers" : "Трейлери"}
+          </h3>
           <VideoPlayer data={trailers} />
         </div>
       )}

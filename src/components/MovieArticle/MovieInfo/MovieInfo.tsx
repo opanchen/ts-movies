@@ -1,7 +1,8 @@
 import defaultLogo from "../../../assets/images/logo.png";
 import { CircleProgressBar } from "src/components/CircleProgressBar/CircleProgressBar";
-import css from "./MovieInfo.module.css";
 import { moviesAPI } from "src/services/moviesAPI";
+import { useLangState } from "src/hooks";
+import css from "./MovieInfo.module.css";
 
 type Props = {
   title: string;
@@ -33,6 +34,8 @@ export const MovieInfo: React.FC<Props> = ({
   companies,
   media,
 }: Props) => {
+  const { lang } = useLangState();
+
   const year: string | null = releaseDate ? releaseDate.slice(0, 4) : null;
   const genreList = genres.map(({ name }) => name).join(", ");
   const countryList = countries.map(({ name }) => name).join(", ");
@@ -43,7 +46,9 @@ export const MovieInfo: React.FC<Props> = ({
         <h1 className={css.title}>{title}</h1>
         {year && <p className={css.year}>({year})</p>}
       </div>
-      <h2 className="visually-hidden">Main information</h2>
+      <h2 className="visually-hidden">
+        {lang === "en-US" ? "Main information" : "Основна інформація"}
+      </h2>
       {tagline && (
         <p className={css.tagline}>
           &laquo;
@@ -54,29 +59,41 @@ export const MovieInfo: React.FC<Props> = ({
       <div className={css["data-box"]}>
         <div className={css["data-box-inner"]}>
           <p className={css["title-original"]}>
-            <span className={css.label}>Original title:</span> {originalTitle}
+            <span className={css.label}>
+              {lang === "en-US" ? "Original title: " : "Оригінальна назва: "}
+            </span>
+            {originalTitle}
           </p>
           {genreList && (
             <p className={css.genres}>
-              <span className={css.label}>Genre:</span>{" "}
+              <span className={css.label}>
+                {lang === "en-US" ? "Genre: " : "Жанр: "}
+              </span>
               <span className={css["genres-list"]}>{genreList}</span>
             </p>
           )}
           {releaseDate && (
             <p className={css["release-date"]}>
-              <span className={css.label}>Release date:</span> {releaseDate}
+              <span className={css.label}>
+                {lang === "en-US" ? "Release date: " : "Дата виходу: "}
+              </span>
+              {releaseDate}
             </p>
           )}
           {countryList && (
             <p className={css.countries}>
-              <span className={css.label}>Country:</span>{" "}
+              <span className={css.label}>
+                {lang === "en-US" ? "Country: " : "Країна: "}
+              </span>
               <span className={css["genres-list"]}>{countryList}</span>
             </p>
           )}
         </div>
 
         <div className={css.rate} aria-label="average movie rating integer">
-          <p className={`${css["rate-label"]} ${css.label}`}>Average rating:</p>
+          <p className={`${css["rate-label"]} ${css.label}`}>
+            {lang === "en-US" ? "Average rating:" : "Середня оцінка:"}
+          </p>
           <CircleProgressBar
             circleWidth={media === "mobile" ? 36 : 42}
             vote={vote}
@@ -85,14 +102,18 @@ export const MovieInfo: React.FC<Props> = ({
       </div>
       {overview && (
         <p className={css.descr}>
-          <span className={css.label}>Overview: </span>
+          <span className={css.label}>
+            {lang === "en-US" ? "Overview: " : "Опис: "}
+          </span>
           {overview}
         </p>
       )}
       {companies && companies.length > 0 && (
         <div className={css.companies}>
           <p className={`${css["companies-label"]} ${css.label}`}>
-            Production companies:
+            {lang === "en-US"
+              ? "Production companies: "
+              : "Компанії виробники: "}
           </p>
           <ul className={css["companies-list"]}>
             {companies.map(({ name, logo_path }) => (

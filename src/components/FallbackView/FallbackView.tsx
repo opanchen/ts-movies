@@ -1,5 +1,6 @@
 import { BiError } from "react-icons/bi";
 import css from "./FallbackView.module.css";
+import { useLangState } from "src/hooks";
 
 type Props = {
   message: string;
@@ -7,6 +8,11 @@ type Props = {
 };
 
 export const FallbackView: React.FC<Props> = ({ message, type }: Props) => {
+  const { lang } = useLangState();
+
+  const warningLabelText: string = lang === "en-US" ? "Warning" : "Увага";
+  const errorLabelText: string = lang === "en-US" ? "Error" : "Помилка";
+
   return (
     <>
       <div className={css["fallback-wrapper"]}>
@@ -20,7 +26,7 @@ export const FallbackView: React.FC<Props> = ({ message, type }: Props) => {
               className={css.label}
               style={{ color: type === "init" ? "#ff9747" : "#a60909" }}
             >
-              {type === "init" ? "Warning:" : "Error:"}
+              {type === "init" ? warningLabelText : errorLabelText}
             </p>
           </div>
           <p>{message}</p>
