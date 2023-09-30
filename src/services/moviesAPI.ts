@@ -70,9 +70,15 @@ type FetchGenresResponse = {
   genres: Genre[];
 };
 
-const fetchTrending = async (): Promise<FetchMoviesResponse | undefined> => {
+const fetchTrending = async ({
+  language,
+}: {
+  language: Language;
+}): Promise<FetchMoviesResponse | undefined> => {
   try {
-    const res = await axios.get(`/trending/movie/day?api_key=${API_KEY}`);
+    const res = await axios.get(
+      `/trending/movie/day?api_key=${API_KEY}&language=${language}`
+    );
     // console.log(res.data);
 
     return res.data;
@@ -94,12 +100,16 @@ const fetchGenres = async (
   }
 };
 
-const fetchMovieByQuery = async (
-  query: string
-): Promise<FetchMoviesResponse | undefined> => {
+const fetchMovieByQuery = async ({
+  query,
+  language,
+}: {
+  query: string;
+  language: Language;
+}): Promise<FetchMoviesResponse | undefined> => {
   try {
     const res = await axios.get(
-      `/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false`
+      `/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=${language}`
     );
     return res.data;
   } catch (er) {
@@ -107,8 +117,14 @@ const fetchMovieByQuery = async (
   }
 };
 
-const fetchMovieDetails = async (id: string | number) => {
-  const fetchUrl = `/movie/${id}?api_key=${API_KEY}`;
+const fetchMovieDetails = async ({
+  id,
+  language,
+}: {
+  id: string | number;
+  language: Language;
+}) => {
+  const fetchUrl = `/movie/${id}?api_key=${API_KEY}&language=${language}`;
 
   try {
     const res = await axios.get(fetchUrl);
@@ -118,8 +134,33 @@ const fetchMovieDetails = async (id: string | number) => {
   }
 };
 
-const fetchMovieCast = async (id: string | number) => {
-  const fetchUrl = `/movie/${id}/credits?api_key=${API_KEY}`;
+const fetchMovieCast = async ({
+  id,
+  language,
+}: {
+  id: number | string;
+  language: Language;
+}) => {
+  const fetchUrl = `/movie/${id}/credits?api_key=${API_KEY}&language=${language}`;
+
+  try {
+    const res = await axios.get(fetchUrl);
+    console.log(res);
+
+    return res.data;
+  } catch (er) {
+    console.log(er);
+  }
+};
+
+const fetchMovieReviews = async ({
+  id,
+  language,
+}: {
+  id: number | string;
+  language: Language;
+}) => {
+  const fetchUrl = `/movie/${id}/reviews?api_key=${API_KEY}&language=${language}`;
 
   try {
     const res = await axios.get(fetchUrl);
@@ -129,22 +170,26 @@ const fetchMovieCast = async (id: string | number) => {
   }
 };
 
-const fetchMovieReviews = async (id: string | number) => {
-  const fetchUrl = `/movie/${id}/reviews?api_key=${API_KEY}`;
+const fetchMovieVideos = async ({
+  id,
+  language,
+}: {
+  id: number | string;
+  language: Language;
+}) => {
+  const fetchUrl = `/movie/${id}/videos?api_key=${API_KEY}&language=${language}`;
 
   try {
     const res = await axios.get(fetchUrl);
-    return res.data;
-  } catch (er) {
-    console.log(er);
-  }
-};
+    console.log(res);
 
-const fetchMovieVideos = async (id: string | number) => {
-  const fetchUrl = `/movie/${id}/videos?api_key=${API_KEY}`;
+    if (language === "uk-UA" && res.data?.results.length === 0) {
+      const extraRes = await axios.get(
+        `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+      );
+      return extraRes.data;
+    }
 
-  try {
-    const res = await axios.get(fetchUrl);
     return res.data;
   } catch (er) {
     console.log(er);

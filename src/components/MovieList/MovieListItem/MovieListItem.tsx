@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { CircleProgressBar, CollectBnt } from "src/components";
 import css from "./MovieListItem.module.css";
 import { getGenres, isMovieCollected } from "src/helpers";
-import { useAppSelector } from "src/hooks";
+import { useAppSelector, useLangState } from "src/hooks";
 import { selectCollectionEn } from "src/redux/selectors";
 
 type MovieType = {
@@ -40,6 +40,7 @@ export const MovieListItem: React.FC<Props> = ({
   const collection = useAppSelector(selectCollectionEn);
   const isCollected = isMovieCollected({ id, arr: collection });
   const isCollectionPage = location.pathname.endsWith("/collection");
+  const { lang } = useLangState();
 
   const posterPath: string = poster
     ? `${moviesAPI.imgBaseURL.middle}${poster}`
@@ -49,7 +50,9 @@ export const MovieListItem: React.FC<Props> = ({
     releaseDate || commonDate ? (releaseDate || commonDate).slice(0, 4) : "";
 
   const genres =
-    !genre_ids || genre_ids.length === 0 ? null : getGenres(genre_ids);
+    !genre_ids || genre_ids.length === 0
+      ? null
+      : getGenres({ ids: genre_ids, language: lang });
   // console.log("Item genres: ", genres);
 
   return (

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { selectCollectionEn } from "src/redux/selectors";
 import { isMovieCollected } from "src/helpers";
-import { useAppSelector } from "src/hooks";
+import { useAppSelector, useLangState } from "src/hooks";
 import { moviesAPI } from "src/services/moviesAPI";
 import {
   BackLinkBtn,
@@ -20,6 +20,7 @@ const MovieDetails: React.FC = () => {
   const [movie, setMovie] = useState<{ [key: string]: any } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { lang } = useLangState();
 
   const collection = useAppSelector(selectCollectionEn);
   // ! Temporary use only En-collection...
@@ -33,7 +34,10 @@ const MovieDetails: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const data = await moviesAPI.getDetails(movieId);
+        const data = await moviesAPI.getDetails({
+          id: movieId,
+          language: lang,
+        });
         // console.log(data);
         setMovie(data);
       } catch (error) {
@@ -45,7 +49,7 @@ const MovieDetails: React.FC = () => {
     };
 
     fetchData();
-  }, [movieId]);
+  }, [lang, movieId]);
 
   return (
     <div className={css.wrapper}>

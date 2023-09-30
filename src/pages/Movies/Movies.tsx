@@ -49,7 +49,10 @@ const Movies: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const data = await moviesAPI.getMoviesByQuery(query);
+        const data = await moviesAPI.getMoviesByQuery({
+          query,
+          language: lang,
+        });
         // console.log(data);
 
         if (!data || data.results.length === 0) {

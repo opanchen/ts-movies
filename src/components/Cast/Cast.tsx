@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { moviesAPI } from "src/services/moviesAPI";
 import { CastSlider, FallbackView, Spinner } from "../";
+import { useLangState } from "src/hooks";
 import css from "./Cast.module.css";
 
 type CastItemType = {
@@ -21,6 +22,7 @@ const Cast: React.FC = () => {
   const [cast, setCast] = useState<CastType>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { lang } = useLangState();
 
   useEffect(() => {
     const handleScroll = async () => {
@@ -44,7 +46,11 @@ const Cast: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const { cast } = await moviesAPI.getCast(movieId);
+        const { cast } = await moviesAPI.getCast({
+          id: movieId,
+          language: lang,
+        });
+        console.log(cast);
 
         if (!cast || cast.length === 0) {
           setError("Cast of this movie wasn't found. Please try again later.");
@@ -64,7 +70,7 @@ const Cast: React.FC = () => {
     };
 
     fetchData();
-  }, [movieId]);
+  }, [lang, movieId]);
 
   return (
     <div className={css.wrapper}>

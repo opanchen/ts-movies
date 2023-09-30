@@ -38,11 +38,15 @@ export const Reviews: React.FC = () => {
   useEffect(() => {
     if (!movieId) return;
 
+    setError(null);
     setIsLoading(true);
 
     const fetchData = async () => {
       try {
-        const { results } = await moviesAPI.getReviews(movieId);
+        const { results } = await moviesAPI.getReviews({
+          id: movieId,
+          language: lang,
+        });
         // console.log(results);
 
         if (!results || results.length === 0) {
@@ -69,7 +73,7 @@ export const Reviews: React.FC = () => {
     <div className={css.wrapper}>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
-      {reviews.length > 0 && (
+      {!error && reviews.length > 0 && (
         <>
           <h3 className="visually-hidden">
             {lang === "en-US" ? "Reviews" : "Рецензії"}

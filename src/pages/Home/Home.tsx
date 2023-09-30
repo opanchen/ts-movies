@@ -34,9 +34,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setError(null);
         setIsLoading(true);
 
-        const data = await moviesAPI.getTrending();
+        const data = await moviesAPI.getTrending({ language: lang });
         if (data) setMovies(data?.results);
 
         // console.log(data);

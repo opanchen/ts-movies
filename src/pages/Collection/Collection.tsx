@@ -1,12 +1,14 @@
 import { useAppSelector, useLangState } from "src/hooks";
-import { selectCollectionEn } from "src/redux/selectors";
+import { selectCollectionEn, selectCollectionUk } from "src/redux/selectors";
 import { Container, FallbackView, MovieList } from "src/components";
 import css from "./Collection.module.css";
 
 const Collection: React.FC = () => {
   const { lang } = useLangState();
 
-  const movies = useAppSelector(selectCollectionEn);
+  const moviesEn = useAppSelector(selectCollectionEn);
+  const moviesUk = useAppSelector(selectCollectionUk);
+  const movies = lang === "en-US" ? moviesEn : moviesUk;
   //   console.log("EN Collection: ", movies);
 
   const headingTextContent: string =

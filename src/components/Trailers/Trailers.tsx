@@ -18,7 +18,6 @@ type Video = {
 
 const Trailers: React.FC = () => {
   const { movieId } = useParams();
-
   const [trailers, setTrailers] = useState<Video[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -43,19 +42,30 @@ const Trailers: React.FC = () => {
     if (!movieId) return;
 
     const fetchData = async () => {
+      setError(null);
       setIsLoading(true);
 
       try {
         const videoRes: { id: number; results: Video[] } =
-          await moviesAPI.getVideos(movieId);
-        // console.log(videoRes);
+          await moviesAPI.getVideos({ id: movieId, language: lang });
+        console.log(videoRes);
 
         const trailers = videoRes.results.filter(
           ({ type, site }) =>
             type === "Trailer" && site.toLowerCase() === "youtube"
         );
 
+        const teasers = videoRes.results.filter(
+          ({ type, site }) =>
+            type === "Teaser" && site.toLowerCase() === "youtube"
+        );
+
         if (!trailers || trailers.length === 0) {
+          if (teasers && teasers.length > 0) {
+            setTrailers(teasers);
+            return;
+          }
+
           const errorMessage =
             lang === "en-US"
               ? "There aren't trailers for this movie yet. Try again later."
@@ -85,7 +95,7 @@ const Trailers: React.FC = () => {
     <div className={css.wrapper}>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
-      {trailers.length > 0 && (
+      {!error && trailers.length > 0 && (
         <div className={css["trailers-container"]}>
           <h3 className="visually-hidden">
             {lang === "en-US" ? "Trailers" : "Трейлери"}
