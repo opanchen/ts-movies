@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { addMovie, setGenres } from "./operations";
+import { toast } from "react-toastify";
+import { getLang } from "src/helpers";
 
 type MovieItem = {
   title: string;
@@ -69,6 +71,12 @@ export const moviesSlice = createSlice({
 
       state.collection["en-US"].splice(indexEn, 1);
       state.collection["uk-UA"].splice(indexUk, 1);
+
+      getLang() === "en-US"
+        ? toast.success(
+            "The movie has been successfully removed from your collection!"
+          )
+        : toast.success("Фільм було успішно видалено з Вашої колекції!");
     },
   },
   extraReducers(builder) {
@@ -92,6 +100,12 @@ export const moviesSlice = createSlice({
 
         state.collection["en-US"].push(payload["en-US"]);
         state.collection["uk-UA"].push(payload["uk-UA"]);
+
+        getLang() === "en-US"
+          ? toast.success(
+              "The movie has been successfully added to your collection!"
+            )
+          : toast.success("Фільм було успішно додано до Вашої колекції!");
       })
       .addCase(addMovie.pending, (state) => {
         state.isLoading = true;
@@ -101,6 +115,10 @@ export const moviesSlice = createSlice({
         // console.log("rj-ACTION: ", action);
         // console.log("rj-PAYLOAD: ", action.payload);
         state.error = action.payload?.errorMessage;
+
+        getLang() === "en-US"
+          ? toast.error("Something went wrong... Try again later!")
+          : toast.error("Щось пішло не так... Повторіть спробу пізніше!");
       })
       .addCase(setGenres.fulfilled, (state, { payload }) => {
         state.isLoading = false;

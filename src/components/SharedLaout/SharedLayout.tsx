@@ -9,6 +9,8 @@ import {
   useThemeState,
 } from "../../hooks";
 import { AppBar, Container, Spinner } from "../";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import css from "./SharedLayout.module.css";
 
 export const SharedLayout: React.FC = () => {
@@ -41,6 +43,8 @@ export const SharedLayout: React.FC = () => {
           <Outlet />
         </Suspense>
       </main>
+
+      <ToastContainer autoClose={3000} />
 
       <footer className={css.footer}></footer>
     </div>

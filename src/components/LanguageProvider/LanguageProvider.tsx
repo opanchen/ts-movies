@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const LS_KEY: string = "movies-ui-lang";
+export const LS_KEY: string = "movies-ui-lang";
 
 type LangMode = "en-US" | "uk-UA";
 

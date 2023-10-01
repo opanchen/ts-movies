@@ -1,6 +1,7 @@
 import { useState } from "react";
 import css from "./SearchForm.module.css";
 import { useLangState } from "src/hooks";
+import { toast } from "react-toastify";
 
 type Props = {
   onSubmit: (query: string) => void;
@@ -18,7 +19,10 @@ export const SearchForm: React.FC<Props> = ({ onSubmit }: Props) => {
     e.preventDefault();
 
     if (query.trim() === "") {
-      return alert("Enter search query...");
+      lang === "en-US"
+        ? toast.warning("Enter search query...")
+        : toast.warning("Введіть пошуковий запит...");
+      return;
     }
 
     onSubmit(query);
