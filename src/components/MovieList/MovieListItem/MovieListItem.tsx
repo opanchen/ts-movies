@@ -2,10 +2,14 @@ import defaultPoster from "../../../assets/images/defaultPoster.jpg";
 import { moviesAPI } from "src/services/moviesAPI";
 import { Link, useLocation } from "react-router-dom";
 import { CircleProgressBar, CollectBnt } from "src/components";
-import css from "./MovieListItem.module.css";
 import { getGenres, isMovieCollected } from "src/helpers";
 import { useAppSelector, useLangState } from "src/hooks";
-import { selectCollectionEn } from "src/redux/selectors";
+import {
+  selectCollectionEn,
+  selectGenresEn,
+  selectGenresUk,
+} from "src/redux/selectors";
+import css from "./MovieListItem.module.css";
 
 type MovieType = {
   title: string;
@@ -42,6 +46,9 @@ export const MovieListItem: React.FC<Props> = ({
   const isCollectionPage = location.pathname.endsWith("/collection");
   const { lang } = useLangState();
 
+  const genresUk = useAppSelector(selectGenresUk);
+  const genresEn = useAppSelector(selectGenresEn);
+
   const posterPath: string = poster
     ? `${moviesAPI.imgBaseURL.middle}${poster}`
     : defaultPoster;
@@ -52,7 +59,9 @@ export const MovieListItem: React.FC<Props> = ({
   const genres =
     !genre_ids || genre_ids.length === 0
       ? null
-      : getGenres({ ids: genre_ids, language: lang });
+      : lang === "en-US"
+      ? getGenres({ ids: genre_ids, fullArr: genresEn })
+      : getGenres({ ids: genre_ids, fullArr: genresUk });
   // console.log("Item genres: ", genres);
 
   return (

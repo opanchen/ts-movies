@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { addMovie } from "./operations";
+import { addMovie, setGenres } from "./operations";
 
 type MovieItem = {
   title: string;
@@ -20,16 +20,33 @@ type MovieItem = {
   [key: string]: any;
 };
 
-interface MoviesState {
-  "en-US": MovieItem[];
-  "uk-UA": MovieItem[];
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type MoviesState = {
+  collection: {
+    "en-US": MovieItem[];
+    "uk-UA": MovieItem[];
+  };
+  genres: {
+    "en-US": Genre[];
+    "uk-UA": Genre[];
+  };
   isLoading: boolean;
   error: null | string | undefined;
-}
+};
 
 const initialState: MoviesState = {
-  "en-US": [],
-  "uk-UA": [],
+  collection: {
+    "en-US": [],
+    "uk-UA": [],
+  },
+  genres: {
+    "en-US": [],
+    "uk-UA": [],
+  },
   isLoading: false,
   error: null,
 };
@@ -39,10 +56,10 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     remove: (state, action: PayloadAction<number | string>) => {
-      const indexEn = state["en-US"].findIndex(
+      const indexEn = state.collection["en-US"].findIndex(
         ({ id }) => id.toString() === action.payload.toString()
       );
-      const indexUk = state["uk-UA"].findIndex(
+      const indexUk = state.collection["uk-UA"].findIndex(
         ({ id }) => id.toString() === action.payload.toString()
       );
 
@@ -50,8 +67,8 @@ export const moviesSlice = createSlice({
         return alert("Error: this movie isn't collected.");
       }
 
-      state["en-US"].splice(indexEn, 1);
-      state["uk-UA"].splice(indexUk, 1);
+      state.collection["en-US"].splice(indexEn, 1);
+      state.collection["uk-UA"].splice(indexUk, 1);
     },
   },
   extraReducers(builder) {
@@ -60,12 +77,12 @@ export const moviesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         // console.log("ACTION: ", action);
-        console.log("PAYLOAD: ", payload);
+        // console.log("PAYLOAD: ", payload);
 
-        const existentItemEn = state["en-US"].find(
+        const existentItemEn = state.collection["en-US"].find(
           ({ id }) => id.toString() === payload.id.toString()
         );
-        const existentItemUk = state["uk-UA"].find(
+        const existentItemUk = state.collection["uk-UA"].find(
           ({ id }) => id.toString() === payload.id.toString()
         );
 
@@ -73,17 +90,31 @@ export const moviesSlice = createSlice({
           return alert("Already exists in your collection");
         }
 
-        state["en-US"].push(payload["en-US"]);
-        state["uk-UA"].push(payload["uk-UA"]);
+        state.collection["en-US"].push(payload["en-US"]);
+        state.collection["uk-UA"].push(payload["uk-UA"]);
       })
       .addCase(addMovie.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(addMovie.rejected, (state, action) => {
         state.isLoading = false;
-        console.log("rj-ACTION: ", action);
-        console.log("rj-PAYLOAD: ", action.payload);
+        // console.log("rj-ACTION: ", action);
+        // console.log("rj-PAYLOAD: ", action.payload);
         state.error = action.payload?.errorMessage;
+      })
+      .addCase(setGenres.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        // console.log(payload);
+        state.genres[payload.language] = payload.genres;
+      })
+      .addCase(setGenres.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload?.errorMessage;
+        // console.log(payload);
+      })
+      .addCase(setGenres.pending, (state) => {
+        state.isLoading = true;
       });
   },
 });

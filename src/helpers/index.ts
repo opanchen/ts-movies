@@ -1,2 +1,2 @@
-export * from "./setGenres";
+export * from "./getGenres";
 export * from "./isMovieCollected";

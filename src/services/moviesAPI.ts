@@ -89,15 +89,11 @@ const fetchTrending = async ({
 
 const fetchGenres = async (
   language: Language
-): Promise<FetchGenresResponse | undefined> => {
-  try {
-    const res = await axios.get(
-      `/genre/movie/list?api_key=${API_KEY}&language=${language}`
-    );
-    return res.data;
-  } catch (er) {
-    console.log(er);
-  }
+): Promise<FetchGenresResponse> => {
+  const res = await axios.get(
+    `/genre/movie/list?api_key=${API_KEY}&language=${language}`
+  );
+  return res.data;
 };
 
 const fetchMovieByQuery = async ({

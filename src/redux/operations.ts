@@ -21,6 +21,18 @@ type MovieCardType = {
 
 type AddMovieArgs = string | number;
 
+type Language = "en-US" | "uk-UA";
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type SetGenresResult = {
+  language: Language;
+  genres: Genre[];
+};
+
 type AddMovieResult = {
   id: string | number;
   "en-US": MovieCardType;
@@ -102,6 +114,38 @@ export const addMovie = createAsyncThunk<
   } catch (err) {
     // console.log("err: ", err);
 
+    let error: AxiosError<ValidateError> = err as any;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue({ errorMessage: error.message });
+  }
+});
+
+export const setGenres = createAsyncThunk<
+  SetGenresResult,
+  Language,
+  {
+    rejectValue: ValidateError;
+  }
+>("movies-collection/setGenres", async (language, { rejectWithValue }) => {
+  try {
+    const response = await moviesAPI.getGenres(language);
+    // console.log("res: ", response);
+
+    if (!response.genres) {
+      return rejectWithValue({
+        errorMessage: "Error inside getGenres function: no data fetched.",
+      });
+    }
+
+    const obj = {
+      language,
+      genres: response.genres,
+    };
+
+    return obj;
+  } catch (err) {
     let error: AxiosError<ValidateError> = err as any;
     if (!error.response) {
       throw err;

@@ -1,21 +1,32 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useLangState, useThemeState } from "../../hooks";
-import { setGenres } from "src/helpers";
-import { AppBar, Container } from "../";
+import { setGenres } from "src/redux/operations";
+import { selectAllGenres } from "src/redux/selectors";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useLangState,
+  useThemeState,
+} from "../../hooks";
+import { AppBar, Container, Spinner } from "../";
 import css from "./SharedLayout.module.css";
 
 export const SharedLayout: React.FC = () => {
   const { theme } = useThemeState();
   const { lang } = useLangState();
+  const dispatch = useAppDispatch();
+  const allGenres = useAppSelector(selectAllGenres);
 
   useEffect(() => {
-    const init = async () => {
-      await setGenres(lang);
-    };
+    if (allGenres[lang] && allGenres[lang].length !== 0) {
+      // console.log(
+      //   "Genres are already in redux-state. Do not dispatch! Return from func."
+      // );
+      return;
+    }
 
-    init();
-  }, [lang]);
+    dispatch(setGenres(lang));
+  }, [allGenres, dispatch, lang]);
 
   return (
     <div data-theme={theme} className={css.layout}>
@@ -26,7 +37,7 @@ export const SharedLayout: React.FC = () => {
       </header>
 
       <main className={css["main-content"]}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>
