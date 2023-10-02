@@ -61,6 +61,11 @@ export const Reviews: React.FC = () => {
         setReviews(results);
       } catch (error) {
         console.log(error);
+        const errorMessage =
+          lang === "en-US"
+            ? "Something went wrong... Please try again later."
+            : "Щось пішло не так... Будь ласка, повторіть спробу пізніше.";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }

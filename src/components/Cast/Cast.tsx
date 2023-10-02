@@ -50,20 +50,29 @@ const Cast: React.FC = () => {
           id: movieId,
           language: lang,
         });
-        console.log(cast);
+        // console.log(cast);
 
-        if (!cast || cast.length === 0) {
-          setError("Cast of this movie wasn't found. Please try again later.");
-          return;
-        }
-        const mainCast: CastType = cast.filter(
+        const mainCast: CastType = cast?.filter(
           ({ known_for_department }: CastItemType) =>
             known_for_department === "Acting"
         );
 
+        if (!cast || cast.length === 0 || mainCast.length === 0) {
+          const errorMessage =
+            lang === "en-US"
+              ? "Cast of this movie wasn't found. Please try again later."
+              : "Cписок ролей для даного фільму не знайдено. Будь ласка, повторіть спробу пізніше.";
+          setError(errorMessage);
+          return;
+        }
         setCast(mainCast);
       } catch (error) {
         console.log(error);
+        const errorMessage =
+          lang === "en-US"
+            ? "Something went wrong... Please try again later."
+            : "Щось пішло не так... Будь ласка, повторіть спробу пізніше.";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }

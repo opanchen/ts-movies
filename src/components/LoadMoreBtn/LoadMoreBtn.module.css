@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  padding: 32px 0 16px 0;
+}
+
+.button {
+  /* outline: 1px dashed tomato; */
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 4px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  background-color: var(--bgc-secondary);
+  transition: color 250ms linear;
+}
+
+.button:hover,
+.button:focus {
+  color: var(--color-text-secondary);
+}
+
+@media screen and (min-width: 480px) {
+  .button {
+    padding: 8px 8px;
+    font-size: 16px;
+  }
+}

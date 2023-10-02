@@ -12,26 +12,28 @@ const imgBgBaseURL = {
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
+type MovieType = {
+  title: string;
+  original_title: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  release_date: string;
+  id: number;
+  media_type: string;
+  original_language: string;
+  popularity: number;
+  vote_average: number;
+  vote_count: number;
+  genre_ids: number[];
+  [key: string]: unknown;
+};
+
 type FetchMoviesResponse = {
   page: number;
   total_pages: number;
   total_results: number;
-  results: {
-    title: string;
-    original_title: string;
-    overview: string;
-    backdrop_path: string;
-    poster_path: string;
-    release_date: string;
-    id: number;
-    media_type: string;
-    original_language: string;
-    popularity: number;
-    vote_average: number;
-    vote_count: number;
-    genre_ids: number[];
-    [key: string]: unknown;
-  }[];
+  results: MovieType[];
 };
 
 type MovieDetails = {
@@ -72,12 +74,14 @@ type FetchGenresResponse = {
 
 const fetchTrending = async ({
   language,
+  page,
 }: {
   language: Language;
+  page: number;
 }): Promise<FetchMoviesResponse | undefined> => {
   try {
     const res = await axios.get(
-      `/trending/movie/day?api_key=${API_KEY}&language=${language}`
+      `/trending/movie/day?api_key=${API_KEY}&language=${language}&page=${page}`
     );
     // console.log(res.data);
 
@@ -99,13 +103,15 @@ const fetchGenres = async (
 const fetchMovieByQuery = async ({
   query,
   language,
+  page,
 }: {
   query: string;
   language: Language;
+  page: number;
 }): Promise<FetchMoviesResponse | undefined> => {
   try {
     const res = await axios.get(
-      `/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=${language}`
+      `/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=${language}&page=${page}`
     );
     return res.data;
   } catch (er) {

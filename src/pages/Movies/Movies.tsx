@@ -5,10 +5,12 @@ import { moviesAPI } from "src/services/moviesAPI";
 import {
   Container,
   FallbackView,
+  LoadMoreBtn,
   MovieList,
   SearchForm,
   Spinner,
 } from "src/components";
+import { toast } from "react-toastify";
 import css from "./Movies.module.css";
 
 type MovieType = {
@@ -36,9 +38,20 @@ const Movies: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [totalResults, setTotalResults] = useState<number>(0);
+
+  const cleanState = () => {
+    setMovies([]);
+    setPage(1);
+    setTotalPages(0);
+    setTotalResults(0);
+    setError(null);
+  };
 
   const onSearchFormSubmit = (query: string) => {
-    setError(null);
+    cleanState();
     setSearchParams({ query });
   };
 
@@ -52,6 +65,7 @@ const Movies: React.FC = () => {
         const data = await moviesAPI.getMoviesByQuery({
           query,
           language: lang,
+          page,
         });
         // console.log(data);
 
@@ -64,7 +78,28 @@ const Movies: React.FC = () => {
           return;
         }
 
-        setMovies(data.results);
+        const { results, total_pages, total_results } = data;
+
+        setMovies((prevMovies) => {
+          // Additional filter-operation to prevent response movie-items duplication inside main array:
+          const filteredResults = results.filter((item) => {
+            return prevMovies.map(({ id }) => id).indexOf(item.id) === -1;
+          });
+
+          return [...prevMovies, ...filteredResults];
+        });
+
+        if (totalPages !== total_pages) setTotalPages(total_pages);
+
+        if (totalResults !== total_results) {
+          const message =
+            lang === "en-US"
+              ? `Number of successful search results: ${total_results}!`
+              : `Кількість успішних результатів пошуку: ${total_results}!`;
+
+          toast.success(message);
+          setTotalResults(total_results);
+        }
       } catch (error) {
         console.log(error);
         const errorMessage =
@@ -78,7 +113,11 @@ const Movies: React.FC = () => {
     };
 
     loadMovies();
-  }, [lang, query]);
+  }, [lang, page, query, totalPages, totalResults]);
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   const defaultFallbackMessage: string =
     lang === "en-US"
@@ -99,7 +138,14 @@ const Movies: React.FC = () => {
         {!error && movies.length === 0 && (
           <FallbackView type="init" message={defaultFallbackMessage} />
         )}
-        {!error && movies.length !== 0 && <MovieList movies={movies} />}
+        {!error && movies.length > 0 && (
+          <>
+            <MovieList movies={movies} />
+            {page !== totalPages && (
+              <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={isLoading} />
+            )}
+          </>
+        )}
       </Container>
     </section>
   );
