@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { Container, FallbackView, MovieList, Spinner } from "src/components";
+import {
+  Container,
+  FallbackView,
+  LoadMoreBtn,
+  MovieList,
+  Spinner,
+} from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
-import css from "./Home.module.css";
 import { useLangState } from "src/hooks";
+import css from "./Home.module.css";
 
 type MovieType = {
   title: string;
@@ -21,14 +27,16 @@ type MovieType = {
   [key: string]: unknown;
 };
 
-type MoviesTrending = MovieType[] | null;
+type MoviesTrending = MovieType[];
 
 type ErrorType = any | null;
 
 const Home: React.FC = () => {
-  const [movies, setMovies] = useState<MoviesTrending>(null);
+  const [movies, setMovies] = useState<MoviesTrending>([]);
   const [error, setError] = useState<ErrorType>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
   const { lang } = useLangState();
 
   useEffect(() => {
@@ -37,8 +45,22 @@ const Home: React.FC = () => {
         setError(null);
         setIsLoading(true);
 
-        const data = await moviesAPI.getTrending({ language: lang });
-        if (data) setMovies(data?.results);
+        const data = await moviesAPI.getTrending({ language: lang, page });
+
+        if (!data) throw new Error("There is no fetched data.");
+
+        const { results, total_pages } = data;
+
+        setMovies((prevMovies) => {
+          // Additional filter-operation to prevent response movie-items duplication inside main array:
+          const filteredResults = results.filter((item) => {
+            return prevMovies.map(({ id }) => id).indexOf(item.id) === -1;
+          });
+
+          return [...prevMovies, ...filteredResults];
+        });
+
+        if (totalPages !== total_pages) setTotalPages(totalPages);
 
         // console.log(data);
       } catch (error) {
@@ -54,7 +76,11 @@ const Home: React.FC = () => {
     };
 
     fetchData();
-  }, [lang]);
+  }, [lang, page, totalPages]);
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   const headingTextContent: string =
     lang === "en-US" ? "Popular movies" : "Популярні фільми";
@@ -65,7 +91,14 @@ const Home: React.FC = () => {
         <h1 className={css.heading}>{headingTextContent}</h1>
         {isLoading && <Spinner />}
         {error && <FallbackView type="error" message={error} />}
-        {movies && <MovieList movies={movies} />}
+        {!error && movies.length > 0 && (
+          <>
+            <MovieList movies={movies} />
+            {page !== totalPages && (
+              <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={isLoading} />
+            )}
+          </>
+        )}
       </Container>
     </section>
   );
