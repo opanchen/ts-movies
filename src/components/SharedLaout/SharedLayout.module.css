@@ -19,6 +19,7 @@
   /* outline: 2px dashed tomato; */
   width: 100%;
   min-height: 40px;
+  display: flex;
 
   background-color: var(--bgc-secondary);
 }
