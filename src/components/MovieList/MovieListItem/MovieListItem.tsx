@@ -74,6 +74,7 @@ export const MovieListItem: React.FC<Props> = ({
               src={posterPath}
               alt={`${title} poster`}
               className={css.image}
+              width={420}
             />
             {!isCollectionPage && (
               <div className={css.rate}>

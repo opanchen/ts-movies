@@ -15,17 +15,14 @@
 
   height: 100%;
   border-radius: 10px;
-  /* overflow: hidden; */
-  /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16); */
-  /* background-color: var(--bgc-secondary); */
-  /* transition: rotate 250ms linear; */
-  /* transition: border-radius 250ms linear; */
 }
 
 .thumb {
   position: relative;
   aspect-ratio: 2/3;
+  background-image: url(../../../assets/images/defaultPoster.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .image {
@@ -40,7 +37,6 @@
   left: 50%;
   transform: translateX(-50%);
   transition: left 500ms linear;
-  /* transition: rotate 250ms linear, left 500ms linear; */
 }
 
 .collect-btn {
@@ -77,12 +73,6 @@
   font-weight: 500;
 }
 
-/* .card:hover,
-.card:focus {
-  border-radius: 0;
-  rotate: 3deg;
-} */
-
 .card:hover .title,
 .card:focus .title {
   color: var(--color-accent);
@@ -91,9 +81,5 @@
 
 .card:hover .rate,
 .card:focus .rate {
-  /* rotate: 30deg; */
   left: 90%;
 }
-
-/* @media screen and (min-width: 768px) {
-} */
