@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Container,
   FallbackView,
@@ -38,6 +38,7 @@ const Home: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
   const { lang } = useLangState();
+  const isLoadingMore = useRef(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +46,53 @@ const Home: React.FC = () => {
         setError(null);
         setIsLoading(true);
 
-        const data = await moviesAPI.getTrending({ language: lang, page });
+        const resultsArr: MovieType[] = [];
+
+        for (let i = 0; i < page; i += 1) {
+          const data = await moviesAPI.getTrending({
+            language: lang,
+            page: i + 1,
+          });
+          if (!data) throw new Error("There is no fetched data.");
+          resultsArr.push(...data.results);
+          // console.log(`Fetch operation for page ${i + 1}...`);
+        }
+
+        // Additional filter-operation to prevent response movie-items duplication inside main array:
+        setMovies((prevMovies) => {
+          // case of first fetch (component did mount):
+          if (prevMovies.length === 0) return resultsArr;
+
+          // case of ui-language change:
+          const uniqueResults = prevMovies.map((movie) => {
+            const newItem = resultsArr.find(({ id }) => id === movie.id);
+            return newItem ? newItem : movie;
+          });
+
+          return uniqueResults;
+        });
+        // console.log("Movies have been updated.");
+      } catch (error) {
+        console.log(error);
+        const errorMessage: string =
+          lang === "en-US"
+            ? "Something went wrong... Please, try again later."
+            : "Щось пішло не так... Будь ласка, повторіть спробу пізніше.";
+        setError(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const fetchMoreData = async () => {
+      try {
+        setError(null);
+        setIsLoading(true);
+
+        const data = await moviesAPI.getTrending({
+          language: lang,
+          page,
+        });
 
         if (!data) throw new Error("There is no fetched data.");
 
@@ -61,8 +108,6 @@ const Home: React.FC = () => {
         });
 
         if (totalPages !== total_pages) setTotalPages(totalPages);
-
-        // console.log(data);
       } catch (error) {
         console.log(error);
         const errorMessage: string =
@@ -72,13 +117,16 @@ const Home: React.FC = () => {
         setError(errorMessage);
       } finally {
         setIsLoading(false);
+        isLoadingMore.current = false;
       }
     };
 
-    fetchData();
+    // Determine which dependency array variable causes server request: 'loading more' operation or UI-language change.
+    isLoadingMore.current === false ? fetchData() : fetchMoreData();
   }, [lang, page, totalPages]);
 
   const handleLoadMore = () => {
+    isLoadingMore.current = true;
     setPage((prevPage) => prevPage + 1);
   };
 

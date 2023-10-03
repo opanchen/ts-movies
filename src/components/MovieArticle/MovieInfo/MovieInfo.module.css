@@ -205,7 +205,7 @@
   .countries,
   .title-original,
   .release-date {
-    padding-right: 0;
+    padding-right: 120px;
   }
 
   /* .data-box-inner {
@@ -264,5 +264,12 @@
 
   .data-box-inner {
     gap: 16px;
+  }
+
+  .genres,
+  .countries,
+  .title-original,
+  .release-date {
+    padding-right: 0;
   }
 }
