@@ -8,6 +8,7 @@
   --bgc-input: #fff;
   --color-text-primary: #777;
   --color-text-secondary: #008080;
+  --color-text-secondary-alpha: rgba(0, 128, 128, 0.7);
   --color-text-main: #000;
   --color-accent: #369ebb;
   --backdrop-gradient: linear-gradient(
@@ -35,6 +36,7 @@
   --bgc-input: rgb(9, 22, 28);
   --color-text-primary: rgba(255, 255, 255, 0.5);
   --color-text-secondary: #008080;
+  --color-text-secondary-alpha: rgba(0, 128, 128, 0.7);
   --color-text-main: #fff;
   --color-accent: #369ebb;
   --backdrop-gradient: linear-gradient(

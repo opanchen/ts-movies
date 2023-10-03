@@ -1,0 +1,30 @@
+.button {
+  position: fixed;
+  z-index: 1;
+  bottom: 24px;
+  right: 24px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  background-color: var(--color-text-secondary-alpha);
+  color: #fff;
+  transition: background-color 250ms linear, color 250ms linear,
+    border-color 250ms linear;
+  /* padding: 4px; */
+
+  /* color: var(--bgc-primary); */
+  /* border: 1px solid var(--color-text-main); */
+}
+
+.button:hover,
+.button:focus {
+  background-color: #efefef;
+  color: var(--color-text-secondary);
+  border-color: var(--color-text-secondary);
+}

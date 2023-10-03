@@ -8,7 +8,7 @@ import {
   useLangState,
   useThemeState,
 } from "../../hooks";
-import { AppBar, Container, Spinner } from "../";
+import { AppBar, Container, ScrollUpBtn, Spinner } from "../";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import css from "./SharedLayout.module.css";
@@ -45,6 +45,7 @@ export const SharedLayout: React.FC = () => {
       </main>
 
       <ToastContainer autoClose={3000} />
+      <ScrollUpBtn />
 
       <footer className={css.footer}></footer>
     </div>

@@ -27,3 +27,4 @@ export * from "./Spinner/SpinnerMini/SpinnerMini";
 export * from "./CollectBnt/CollectBnt";
 export * from "./LangSwitcher/LangSwitcher";
 export * from "./LoadMoreBtn/LoadMoreBtn";
+export * from "./ScrollUpBtn/ScrollUpBtn";
