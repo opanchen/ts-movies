@@ -1,32 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { moviesAPI } from "src/services/moviesAPI";
-
-type MovieCardType = {
-  title: string;
-  original_title: string;
-  overview: string;
-  backdrop_path: string;
-  poster_path: string;
-  release_date: string;
-  id: number;
-  media_type: string;
-  original_language: string;
-  popularity: number;
-  vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  [key: string]: any;
-};
+import type { Genre, Language, MovieType } from "src/types";
 
 type AddMovieArgs = string | number;
-
-type Language = "en-US" | "uk-UA";
-
-type Genre = {
-  id: number;
-  name: string;
-};
 
 type SetGenresResult = {
   language: Language;
@@ -35,8 +12,8 @@ type SetGenresResult = {
 
 type AddMovieResult = {
   id: string | number;
-  "en-US": MovieCardType;
-  "uk-UA": MovieCardType;
+  "en-US": MovieType;
+  "uk-UA": MovieType;
 };
 
 type ValidateError = {
@@ -62,9 +39,6 @@ export const addMovie = createAsyncThunk<
       id,
       lang: "uk-UA",
     });
-
-    //   console.log("RESPONSE EN: ", responseEn);
-    //   console.log("RESPONSE UK: ", responseUk);
 
     if (!responseUk.status || !responseEn.status) {
       return rejectWithValue({

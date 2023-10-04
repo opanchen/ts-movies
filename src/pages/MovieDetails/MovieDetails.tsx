@@ -15,10 +15,11 @@ import {
   Spinner,
 } from "src/components";
 import css from "./MovieDetails.module.css";
+import type { MovieDetailsType } from "src/types";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState<{ [key: string]: any } | null>(null);
+  const [movie, setMovie] = useState<MovieDetailsType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { lang } = useLangState();
@@ -40,10 +41,19 @@ const MovieDetails: React.FC = () => {
           language: lang,
         });
         // console.log(data);
+
+        if (!data) {
+          throw new Error("There is no data.");
+        }
+
         setMovie(data);
       } catch (error) {
         console.log(error);
-        setError("Something went wrong... Please try again later.");
+        const errorMessage =
+          lang === "en-US"
+            ? "Something went wrong. Please try again later!"
+            : "Щось пішло не так... Будь ласка, повторіть спробу пізніше!";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }

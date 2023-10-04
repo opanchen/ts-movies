@@ -3,18 +3,8 @@ import { useEffect, useState } from "react";
 import { FallbackView, Spinner, VideoPlayer } from "../";
 import { moviesAPI } from "src/services/moviesAPI";
 import { useLangState } from "src/hooks";
+import type { Video } from "src/types";
 import css from "./Trailers.module.css";
-
-type Video = {
-  type: string;
-  id: string;
-  key: string;
-  site: string;
-  official: boolean;
-  size: number;
-  published_at: string;
-  [key: string]: any;
-};
 
 const Trailers: React.FC = () => {
   const { movieId } = useParams();
@@ -46,9 +36,13 @@ const Trailers: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const videoRes: { id: number; results: Video[] } =
-          await moviesAPI.getVideos({ id: movieId, language: lang });
-        console.log(videoRes);
+        const videoRes = await moviesAPI.getVideos({
+          id: movieId,
+          language: lang,
+        });
+        // console.log(videoRes);
+
+        if (!videoRes) throw new Error("There is no data.");
 
         const trailers = videoRes.results.filter(
           ({ type, site }) =>

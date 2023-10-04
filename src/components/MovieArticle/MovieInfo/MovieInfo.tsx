@@ -18,7 +18,6 @@ type Props = {
     logo_path: string | null;
     [key: string]: any;
   }>;
-
   [key: string]: any;
 };
 

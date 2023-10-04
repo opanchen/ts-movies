@@ -3,19 +3,12 @@ import { useEffect, useState } from "react";
 import { FallbackView, Spinner } from "../";
 import { moviesAPI } from "src/services/moviesAPI";
 import { useLangState } from "src/hooks";
+import type { ReviewType } from "src/types";
 import css from "./Reviews.module.css";
-
-type Review = {
-  author: string;
-  content: string;
-  id: number;
-  created_at: string;
-  [key: string]: any;
-};
 
 export const Reviews: React.FC = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState<ReviewType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { lang } = useLangState();
@@ -43,11 +36,15 @@ export const Reviews: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const { results } = await moviesAPI.getReviews({
+        const data = await moviesAPI.getReviews({
           id: movieId,
           language: lang,
         });
         // console.log(results);
+
+        if (!data) throw new Error("There is no data.");
+
+        const { results } = data;
 
         if (!results || results.length === 0) {
           const errorMessage =

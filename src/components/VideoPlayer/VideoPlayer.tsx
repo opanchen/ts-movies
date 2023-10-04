@@ -1,16 +1,6 @@
 import ReactPlayer from "react-player/youtube";
+import type { Video } from "src/types";
 import css from "./VideoPlayer.module.css";
-
-type Video = {
-  type: string;
-  id: string;
-  key: string;
-  site: string;
-  official: boolean;
-  size: number;
-  published_at: string;
-  [key: string]: any;
-};
 
 type Props = {
   data: Video[];

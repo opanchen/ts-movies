@@ -1,13 +1,11 @@
 import css from "./CircleProgressBar.module.css";
 
 type Props = {
-  //   percentage: number;
   circleWidth: number;
   vote: number;
 };
 
 export const CircleProgressBar: React.FC<Props> = ({
-  //   percentage,
   circleWidth,
   vote,
 }: Props) => {

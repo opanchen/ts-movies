@@ -12,24 +12,8 @@ import {
   Spinner,
 } from "src/components";
 import { toast } from "react-toastify";
+import type { MovieType } from "src/types";
 import css from "./Movies.module.css";
-
-type MovieType = {
-  title: string;
-  original_title: string;
-  overview: string;
-  backdrop_path: string;
-  poster_path: string;
-  release_date: string;
-  id: number;
-  media_type: string;
-  original_language: string;
-  popularity: number;
-  vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  [key: string]: unknown;
-};
 
 const Movies: React.FC = () => {
   const [movies, setMovies] = useState<MovieType[]>([]);

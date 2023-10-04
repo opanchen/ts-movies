@@ -3,17 +3,8 @@ import { useParams } from "react-router-dom";
 import { moviesAPI } from "src/services/moviesAPI";
 import { CastSlider, FallbackView, Spinner } from "../";
 import { useLangState } from "src/hooks";
+import type { CastItemType } from "src/types";
 import css from "./Cast.module.css";
-
-type CastItemType = {
-  name: string;
-  character: string;
-  known_for_department: string;
-  profile_path: string;
-  gender: number;
-  id: number;
-  [key: string]: any;
-};
 
 type CastType = Array<CastItemType> | [];
 
@@ -46,11 +37,15 @@ const Cast: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const { cast } = await moviesAPI.getCast({
+        const data = await moviesAPI.getCast({
           id: movieId,
           language: lang,
         });
         // console.log(cast);
+
+        if (!data) throw new Error("There is no data.");
+
+        const { cast } = data;
 
         const mainCast: CastType = cast?.filter(
           ({ known_for_department }: CastItemType) =>

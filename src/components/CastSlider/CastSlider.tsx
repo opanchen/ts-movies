@@ -2,19 +2,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./slider-extra-styles.css";
-import css from "./CastSlider.module.css";
 import { CastCard } from "../Cast/CastCard/CastCard";
 import { useWindowDimensions } from "src/hooks";
-
-type CastItemType = {
-  name: string;
-  character: string;
-  known_for_department: string;
-  profile_path: string;
-  gender: number;
-  id: number;
-  [key: string]: any;
-};
+import type { CastItemType } from "src/types";
+import css from "./CastSlider.module.css";
 
 type Props = {
   items: CastItemType[];

@@ -1,23 +1,13 @@
 import defaultPoster from "../../assets/images/defaultPoster.jpg";
-
 import { moviesAPI } from "src/services/moviesAPI";
-import css from "./MovieArticle.module.css";
 import { Container, MovieInfo } from "../";
 import { useWindowDimensions } from "src/hooks";
+import type { MovieDetailsType } from "src/types";
+import css from "./MovieArticle.module.css";
 
 type Props = {
-  [key: string]: any;
+  movie: MovieDetailsType;
 };
-
-//   title: string;
-//   date: string;
-//   vote: number;
-//   originalTitle: string;
-//   overview: string;
-//   tagline: string;
-//   genres: Array<{ id: number; name: string }>;
-//   countries: Array<{ name: string; [key: string]: any }>;
-//   [key: string]: any;
 
 export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
   const {

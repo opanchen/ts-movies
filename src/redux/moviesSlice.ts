@@ -4,33 +4,12 @@ import storage from "redux-persist/lib/storage";
 import { addMovie, setGenres } from "./operations";
 import { toast } from "react-toastify";
 import { getLang } from "src/helpers";
-
-type MovieItem = {
-  title: string;
-  original_title: string;
-  overview: string;
-  backdrop_path: string;
-  poster_path: string;
-  release_date: string;
-  id: number;
-  media_type: string;
-  original_language: string;
-  popularity: number;
-  vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  [key: string]: any;
-};
-
-type Genre = {
-  id: number;
-  name: string;
-};
+import type { Genre, MovieType } from "src/types";
 
 type MoviesState = {
   collection: {
-    "en-US": MovieItem[];
-    "uk-UA": MovieItem[];
+    "en-US": MovieType[];
+    "uk-UA": MovieType[];
   };
   genres: {
     "en-US": Genre[];

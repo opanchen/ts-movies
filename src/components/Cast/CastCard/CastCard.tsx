@@ -1,17 +1,9 @@
 import { moviesAPI } from "src/services/moviesAPI";
-import css from "./CastCard.module.css";
 import avatarMale from "../../../assets/images/avatar-male.jpg";
 import avatarFemale from "../../../assets/images/avatar-female.jpg";
 import avatarDefault from "../../../assets/images/avatar-default.jpg";
-
-type CastItemType = {
-  name: string;
-  character: string;
-  known_for_department: string;
-  profile_path: string;
-  gender: number;
-  [key: string]: any;
-};
+import type { CastItemType } from "src/types";
+import css from "./CastCard.module.css";
 
 type Props = {
   data: CastItemType;

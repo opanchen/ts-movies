@@ -9,24 +9,25 @@ import {
 } from "src/components";
 import { moviesAPI } from "src/services/moviesAPI";
 import { useLangState } from "src/hooks";
+import type { MovieType } from "src/types";
 import css from "./Home.module.css";
 
-type MovieType = {
-  title: string;
-  original_title: string;
-  overview: string;
-  backdrop_path: string;
-  poster_path: string;
-  release_date: string;
-  id: number;
-  media_type: string;
-  original_language: string;
-  popularity: number;
-  vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  [key: string]: unknown;
-};
+// type MovieType = {
+//   title: string;
+//   original_title: string;
+//   overview: string;
+//   backdrop_path: string;
+//   poster_path: string;
+//   release_date: string;
+//   id: number;
+//   media_type: string;
+//   original_language: string;
+//   popularity: number;
+//   vote_average: number;
+//   vote_count: number;
+//   genre_ids: number[];
+//   [key: string]: unknown;
+// };
 
 type MoviesTrending = MovieType[];
 
