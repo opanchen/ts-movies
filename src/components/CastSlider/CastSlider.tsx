@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slider-extra-styles.css";
 import { CastCard } from "../Cast/CastCard/CastCard";
 import { useWindowDimensions } from "src/hooks";
+import { getMediaType } from "src/helpers";
 import type { CastItemType } from "src/types";
 import css from "./CastSlider.module.css";
 
@@ -13,19 +14,7 @@ type Props = {
 
 export const CastSlider: React.FC<Props> = ({ items }: Props) => {
   const { width } = useWindowDimensions();
-
-  //   console.log(items);
-
-  const media: "mobile" | "mobile-up" | "tablet" | "tablet-up" | "desktop" =
-    width < 480
-      ? "mobile"
-      : width >= 480 && width < 768
-      ? "mobile-up"
-      : width >= 1200
-      ? "desktop"
-      : width >= 1040 && width < 1200
-      ? "tablet-up"
-      : "tablet";
+  const media = getMediaType(width);
 
   let slidesToShow = 3;
 

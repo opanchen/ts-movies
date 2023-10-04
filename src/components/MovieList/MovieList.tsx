@@ -1,6 +1,6 @@
 import React from "react";
 import { MovieListItem } from "./MovieListItem/MovieListItem";
-import { MovieType } from "src/types";
+import type { MovieType } from "src/types";
 import css from "./MovieList.module.css";
 
 type Props = {

@@ -2,6 +2,7 @@ import defaultPoster from "../../assets/images/defaultPoster.jpg";
 import { moviesAPI } from "src/services/moviesAPI";
 import { Container, MovieInfo } from "../";
 import { useWindowDimensions } from "src/hooks";
+import { getMediaType } from "src/helpers";
 import type { MovieDetailsType } from "src/types";
 import css from "./MovieArticle.module.css";
 
@@ -25,15 +26,7 @@ export const MovieArticle: React.FC<Props> = ({ movie }: Props) => {
   } = movie;
 
   const { width } = useWindowDimensions();
-  const media: "mobile" | "mobile-up" | "tablet" | "desktop" =
-    width < 480
-      ? "mobile"
-      : width >= 480 && width < 768
-      ? "mobile-up"
-      : width >= 1200
-      ? "desktop"
-      : "tablet";
-  //   console.log(width);
+  const media = getMediaType(width);
 
   const bgImage =
     media === "mobile"
