@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
             <div className={css["icon-trident-wrapper"]}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                enable-background="new 0 0 612 792"
+                enableBackground="new 0 0 612 792"
                 version="1.1"
                 viewBox="0 0 612 792"
                 className={css["icon-trident"]}

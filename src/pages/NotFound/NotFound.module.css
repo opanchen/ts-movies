@@ -1,0 +1,8 @@
+.wrapper {
+  /* outline: 1px dashed tomato; */
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+
+  padding: 8px 0;
+}
