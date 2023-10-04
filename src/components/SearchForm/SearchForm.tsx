@@ -48,7 +48,7 @@ export const SearchForm: React.FC<Props> = ({ onSubmit }: Props) => {
           value={query}
           className={css.input}
           onChange={handleChangeQuery}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-щьюяґєіїА-ЩЬЮЯҐЄІЇ]+(([' -][a-zA-Zа-щьюяґєіїА-ЩЬЮЯҐЄІЇ ])?[a-zA-Zа-щьюяґєіїА-ЩЬЮЯҐЄІЇ]*)*$"
           title={inputTitle}
           placeholder={placeholderText}
         />
