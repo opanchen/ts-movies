@@ -8,7 +8,14 @@ import {
   useLangState,
   useThemeState,
 } from "../../hooks";
-import { AppBar, Container, Footer, ScrollUpBtn, Spinner } from "../";
+import {
+  AppBar,
+  Container,
+  ErrorBoundary,
+  Footer,
+  ScrollUpBtn,
+  Spinner,
+} from "../";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import css from "./SharedLayout.module.css";
@@ -39,9 +46,11 @@ export const SharedLayout: React.FC = () => {
       </header>
 
       <main className={css["main-content"]}>
-        <Suspense fallback={<Spinner />}>
-          <Outlet />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       <ToastContainer autoClose={3000} />

@@ -29,3 +29,4 @@ export * from "./LangSwitcher/LangSwitcher";
 export * from "./LoadMoreBtn/LoadMoreBtn";
 export * from "./ScrollUpBtn/ScrollUpBtn";
 export * from "./Footer/Footer";
+export * from "./ErrorBoundary/ErrorBoundary";
