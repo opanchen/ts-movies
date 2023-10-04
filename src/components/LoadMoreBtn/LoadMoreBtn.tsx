@@ -13,6 +13,22 @@ export const LoadMoreBtn: React.FC<Props> = ({
 }: Props) => {
   const { lang } = useLangState();
 
+  const handleScroll = async () => {
+    setTimeout(
+      () =>
+        window.scrollBy({
+          top: 400,
+          behavior: "smooth",
+        }),
+      1000
+    );
+  };
+
+  const onButtonClick = async () => {
+    onLoadMore();
+    await handleScroll();
+  };
+
   const textContent = lang === "en-US" ? "Load more" : "Показати більше";
   const loadingTextContent =
     lang === "en-US" ? "Loading... " : "Завантаження... ";
@@ -22,7 +38,8 @@ export const LoadMoreBtn: React.FC<Props> = ({
       <button
         className={css.button}
         type="button"
-        onClick={onLoadMore}
+        // onClick={onLoadMore}
+        onClick={onButtonClick}
         aria-label={textContent}
       >
         {isLoading ? (
