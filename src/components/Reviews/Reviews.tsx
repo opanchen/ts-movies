@@ -40,7 +40,6 @@ export const Reviews: React.FC = () => {
           id: movieId,
           language: lang,
         });
-        // console.log(results);
 
         if (!data) throw new Error("There is no data.");
 

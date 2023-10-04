@@ -1,13 +1,14 @@
 .layout {
-  background-color: var(--bgc-primary);
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  background-color: var(--bgc-primary);
 }
 
 .header {
   padding: 8px 0;
+
   background-color: var(--bgc-secondary);
 }
 
@@ -16,7 +17,6 @@
 }
 
 .footer {
-  /* outline: 2px dashed tomato; */
   width: 100%;
   min-height: 40px;
   display: flex;

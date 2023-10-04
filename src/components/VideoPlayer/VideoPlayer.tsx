@@ -20,7 +20,6 @@ export const VideoPlayer: React.FC<Props> = ({ data }: Props) => {
           controls={true}
           className={css.player}
           width="100%"
-          //   fallback={<div>PLAYER loading...</div>}
         />
       </div>
     </>

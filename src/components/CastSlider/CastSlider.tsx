@@ -1,12 +1,12 @@
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./slider-extra-styles.css";
 import { CastCard } from "../Cast/CastCard/CastCard";
 import { useWindowDimensions } from "src/hooks";
 import { getMediaType } from "src/helpers";
 import type { CastItemType } from "src/types";
 import css from "./CastSlider.module.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./slider-extra-styles.css";
 
 type Props = {
   items: CastItemType[];
@@ -63,9 +63,7 @@ export const CastSlider: React.FC<Props> = ({ items }: Props) => {
         {items.map((item) => {
           return (
             <div key={item.id}>
-              {/* <div className={css.item}> */}
               <CastCard data={item} />
-              {/* </div>  */}
             </div>
           );
         })}

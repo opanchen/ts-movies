@@ -41,7 +41,6 @@ const Cast: React.FC = () => {
           id: movieId,
           language: lang,
         });
-        // console.log(cast);
 
         if (!data) throw new Error("There is no data.");
 
@@ -60,6 +59,7 @@ const Cast: React.FC = () => {
           setError(errorMessage);
           return;
         }
+
         setCast(mainCast);
       } catch (error) {
         console.log(error);
@@ -78,7 +78,9 @@ const Cast: React.FC = () => {
 
   return (
     <div className={css.wrapper}>
-      <h3 className="visually-hidden">Movie cast</h3>
+      <h3 className="visually-hidden">
+        {lang === "en-US" ? "Movie cast" : "В ролях"}
+      </h3>
       {isLoading && <Spinner />}
       {error && <FallbackView type="error" message={error} />}
       {cast && cast.length !== 0 && <CastSlider items={cast} />}

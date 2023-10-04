@@ -13,7 +13,7 @@ type Props = {
 export const getGenres = ({ ids, fullArr }: Props) => {
   const res = ids
     .map((item) => {
-      const genre = fullArr.find(({ id, name }) => id === item);
+      const genre = fullArr.find(({ id }) => id === item);
       return genre?.name;
     })
     .slice(0, 2)

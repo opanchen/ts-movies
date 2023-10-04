@@ -29,10 +29,8 @@ export const addMovie = createAsyncThunk<
   }
 >("movies-collection/add", async (id, { rejectWithValue }) => {
   try {
-    // 1.
     const responseEn = await moviesAPI.getMovieById({
       id,
-      //   id: 434343434343,
       lang: "en-US",
     });
     const responseUk = await moviesAPI.getMovieById({
@@ -86,8 +84,6 @@ export const addMovie = createAsyncThunk<
 
     return obj;
   } catch (err) {
-    // console.log("err: ", err);
-
     let error: AxiosError<ValidateError> = err as any;
     if (!error.response) {
       throw err;
@@ -105,7 +101,6 @@ export const setGenres = createAsyncThunk<
 >("movies-collection/setGenres", async (language, { rejectWithValue }) => {
   try {
     const response = await moviesAPI.getGenres(language);
-    // console.log("res: ", response);
 
     if (!response.genres) {
       return rejectWithValue({

@@ -1,5 +1,4 @@
 .wrapper {
-  /* outline: 1px dashed tomato; */
   display: inline-block;
   border-radius: 50%;
 }
@@ -34,7 +33,6 @@
 }
 
 .circle-text {
-  /* font-size: 14px; */
   font-weight: bold;
   stroke: #fff;
   fill: #fff;

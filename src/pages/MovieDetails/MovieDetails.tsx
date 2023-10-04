@@ -14,8 +14,8 @@ import {
   MovieExtraInfo,
   Spinner,
 } from "src/components";
-import css from "./MovieDetails.module.css";
 import type { MovieDetailsType } from "src/types";
+import css from "./MovieDetails.module.css";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams();
@@ -25,9 +25,7 @@ const MovieDetails: React.FC = () => {
   const { lang } = useLangState();
 
   const collection = useAppSelector(selectCollectionEn);
-  // ! Temporary use only En-collection...
   const isCollected = isMovieCollected({ id: movieId, arr: collection });
-  // console.log(isCollected);
 
   useEffect(() => {
     if (!movieId) return;
@@ -40,7 +38,6 @@ const MovieDetails: React.FC = () => {
           id: movieId,
           language: lang,
         });
-        // console.log(data);
 
         if (!data) {
           throw new Error("There is no data.");

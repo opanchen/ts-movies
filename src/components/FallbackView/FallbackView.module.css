@@ -5,20 +5,16 @@
   gap: 8px;
 }
 
-/* .fallback-wrapper > * {
-  outline: 1px dashed teal;
-} */
-
 .overlay {
-  /* outline: 1px dashed teal; */
+  min-width: 264px;
+  height: 180px;
+
   background-image: url(../../assets//images/cinema-element.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left 50% bottom 0;
-
-  min-width: 264px;
-  height: 180px;
 }
+
 .message {
   display: flex;
   flex-direction: column;

@@ -7,10 +7,10 @@
 .input {
   width: 200px;
   padding: 4px 4px;
-  font-size: 14px;
-
   border-radius: 10px;
   border: 1px solid var(--color-text-main);
+
+  font-size: 14px;
   background-color: var(--bgc-input);
   color: var(--color-text-main);
   transition: border-color 250ms linear;
@@ -23,11 +23,11 @@
 }
 
 .submit-btn {
-  /* outline: 1px dashed tomato; */
   display: inline-block;
   padding: 4px 4px;
   border-radius: 10px;
   border: 1px solid;
+
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-main);

@@ -3,7 +3,6 @@
   z-index: 1;
   bottom: 24px;
   right: 24px;
-  cursor: pointer;
 
   display: flex;
   align-items: center;
@@ -12,14 +11,12 @@
   height: 38px;
   border-radius: 12px;
   border: 1px solid #fff;
+  cursor: pointer;
+
   background-color: var(--color-text-secondary-alpha);
   color: #fff;
   transition: background-color 250ms linear, color 250ms linear,
     border-color 250ms linear;
-  /* padding: 4px; */
-
-  /* color: var(--bgc-primary); */
-  /* border: 1px solid var(--color-text-main); */
 }
 
 .button:hover,

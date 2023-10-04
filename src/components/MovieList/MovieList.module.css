@@ -1,18 +1,13 @@
 .list {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   gap: 32px;
+  width: 100%;
 }
 
 .item {
-  /* outline: 1px dashed teal; */
-  flex-basis: calc((100% - 0 * 32px) / 1);
-  /* 
-  calc((100% - кіль-сть_відступів_в_рядку * значення_одного_рядка) / кіль-сть_елементів_в_рядку)
- */
   display: flex;
+  flex-basis: calc((100% - 0 * 32px) / 1);
 }
 
 @media screen and (min-width: 480px) {

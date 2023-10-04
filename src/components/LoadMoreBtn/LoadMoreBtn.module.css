@@ -2,17 +2,16 @@
   width: 100%;
   display: flex;
   justify-content: center;
-
   padding: 32px 0 16px 0;
 }
 
 .button {
-  /* outline: 1px dashed tomato; */
   display: inline-flex;
   align-items: center;
   padding: 4px 4px;
   border-radius: 10px;
   border: 1px solid;
+
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-main);

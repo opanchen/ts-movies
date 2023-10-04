@@ -1,7 +1,7 @@
 import { useState } from "react";
-import css from "./SearchForm.module.css";
 import { useLangState } from "src/hooks";
 import { toast } from "react-toastify";
+import css from "./SearchForm.module.css";
 
 type Props = {
   onSubmit: (query: string) => void;

@@ -1,14 +1,7 @@
-/* .section {
-  outline: 3px dashed tomato;
-} */
-
 .wrapper {
-  /* outline: 2px dashed teal; */
-
   display: flex;
   flex-direction: column;
   gap: 8px;
-
   padding: 8px 0;
 }
 
@@ -19,7 +12,6 @@
 }
 
 .suspense {
-  /* outline: 1px dashed tomato; */
   display: flex;
   flex-direction: column;
   min-height: 204px;
@@ -54,13 +46,13 @@
 
 @media screen and (min-width: 768px) {
   .wrapper {
-    padding: 24px 0;
-
     gap: 24px;
+    padding: 24px 0;
   }
 
   .suspense {
     min-height: 420px;
+
     background: var(--suspense-gradient),
       url(../../assets//images/cinema-element-x2.png);
     background-size: contain;

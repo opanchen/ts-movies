@@ -46,7 +46,6 @@ export const MovieListItem: React.FC<Props> = ({
       : lang === "en-US"
       ? getGenres({ ids: genre_ids, fullArr: genresEn })
       : getGenres({ ids: genre_ids, fullArr: genresUk });
-  // console.log("Item genres: ", genres);
 
   return (
     <div className={css.wrapper}>
@@ -62,11 +61,7 @@ export const MovieListItem: React.FC<Props> = ({
             />
             {!isCollectionPage && (
               <div className={css.rate}>
-                <CircleProgressBar
-                  //   percentage={60}
-                  vote={vote}
-                  circleWidth={48}
-                />
+                <CircleProgressBar vote={vote} circleWidth={48} />
               </div>
             )}
           </div>

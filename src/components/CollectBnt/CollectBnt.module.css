@@ -1,10 +1,10 @@
 .collect-btn {
-  /* outline: 1px dashed tomato; */
-  margin-left: auto;
   display: inline-block;
+  margin-left: auto;
   padding: 4px 4px;
   border-radius: 10px;
   border: 1px solid;
+
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-main);
@@ -49,6 +49,7 @@
 .label {
   display: none;
   margin-right: auto;
+
   font-size: 16px;
   font-weight: 500;
 }

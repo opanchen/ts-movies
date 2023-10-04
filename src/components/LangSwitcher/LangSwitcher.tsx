@@ -3,7 +3,6 @@ import css from "./LangSwitcher.module.css";
 
 export const LangSwitcher: React.FC = () => {
   const { lang, setLang } = useLangState();
-  //   console.log(lang);
 
   const onEnClick = () => {
     setLang("en-US");
@@ -28,7 +27,9 @@ export const LangSwitcher: React.FC = () => {
           width={24}
           className={css.img}
         />
-        <span className="visually-hidden">English</span>
+        <span className="visually-hidden">
+          {lang === "en-US" ? "English" : "Англійська"}
+        </span>
       </button>
       <button
         onClick={onUkClick}
@@ -43,7 +44,9 @@ export const LangSwitcher: React.FC = () => {
           width={24}
           className={css.img}
         />
-        <span className="visually-hidden">Ukrainian</span>
+        <span className="visually-hidden">
+          {lang === "en-US" ? "Ukrainian" : "Українська"}
+        </span>
       </button>
     </div>
   );

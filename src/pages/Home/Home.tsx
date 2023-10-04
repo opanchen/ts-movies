@@ -12,23 +12,6 @@ import { useLangState } from "src/hooks";
 import type { MovieType } from "src/types";
 import css from "./Home.module.css";
 
-// type MovieType = {
-//   title: string;
-//   original_title: string;
-//   overview: string;
-//   backdrop_path: string;
-//   poster_path: string;
-//   release_date: string;
-//   id: number;
-//   media_type: string;
-//   original_language: string;
-//   popularity: number;
-//   vote_average: number;
-//   vote_count: number;
-//   genre_ids: number[];
-//   [key: string]: unknown;
-// };
-
 type MoviesTrending = MovieType[];
 
 type ErrorType = any | null;
@@ -57,7 +40,6 @@ const Home: React.FC = () => {
           });
           if (!data) throw new Error("There is no fetched data.");
           resultsArr.push(...data.results);
-          // console.log(`Fetch operation for page ${i + 1}...`);
         }
 
         // Additional filter-operation to prevent response movie-items duplication inside main array:
@@ -73,7 +55,6 @@ const Home: React.FC = () => {
 
           return uniqueResults;
         });
-        // console.log("Movies have been updated.");
       } catch (error) {
         console.log(error);
         const errorMessage: string =

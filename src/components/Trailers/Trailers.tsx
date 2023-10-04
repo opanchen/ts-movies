@@ -40,7 +40,6 @@ const Trailers: React.FC = () => {
           id: movieId,
           language: lang,
         });
-        // console.log(videoRes);
 
         if (!videoRes) throw new Error("There is no data.");
 
@@ -68,7 +67,6 @@ const Trailers: React.FC = () => {
           return;
         }
 
-        // console.log(trailers);
         setTrailers(trailers);
       } catch (error) {
         console.log(error);

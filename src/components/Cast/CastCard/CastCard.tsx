@@ -10,15 +10,7 @@ type Props = {
 };
 
 export const CastCard: React.FC<Props> = ({ data }: Props) => {
-  //   console.log(data);
-
-  const {
-    name,
-    character,
-    // known_for_department: department,
-    profile_path: profileImg,
-    gender,
-  } = data;
+  const { name, character, profile_path: profileImg, gender } = data;
 
   const genderType = gender === 1 ? "female" : gender === 2 ? "male" : "non";
 
@@ -41,7 +33,6 @@ export const CastCard: React.FC<Props> = ({ data }: Props) => {
   const image = profileImg
     ? `${moviesAPI.imgBaseURL.middle}${profileImg}`
     : defaultImg;
-  //   console.log("IMAGE PATH: ", image);
 
   return (
     <>

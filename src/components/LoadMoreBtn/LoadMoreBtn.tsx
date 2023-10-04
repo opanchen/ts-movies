@@ -38,7 +38,6 @@ export const LoadMoreBtn: React.FC<Props> = ({
       <button
         className={css.button}
         type="button"
-        // onClick={onLoadMore}
         onClick={onButtonClick}
         aria-label={textContent}
       >

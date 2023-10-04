@@ -1,5 +1,4 @@
 .wrapper {
-  /* outline: 3px dashed tomato; */
   flex-grow: 1;
   padding: 8px 0;
 }
@@ -7,8 +6,9 @@
 .text {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   align-items: center;
+  gap: 4px;
+
   text-decoration: none;
   font-style: normal;
 }
@@ -17,19 +17,19 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--color-text-main);
+
   font-size: 12px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text-main);
 }
 
 .icon-trident-wrapper {
-  /* outline: 1px dashed teal; */
-  width: 24px;
-  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 24px;
+  height: 24px;
 }
 
 .icon-trident {
@@ -37,15 +37,15 @@
 }
 
 .author {
-  color: var(--color-text-main);
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text-main);
 }
 
 .author a {
+  font-family: Arial, Helvetica, sans-serif;
   color: var(--color-text-main);
   text-decoration: underline;
-  font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
   transition: color 250ms linear;
 }

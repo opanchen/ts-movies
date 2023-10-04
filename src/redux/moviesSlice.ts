@@ -63,8 +63,6 @@ export const moviesSlice = createSlice({
       .addCase(addMovie.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // console.log("ACTION: ", action);
-        // console.log("PAYLOAD: ", payload);
 
         const existentItemEn = state.collection["en-US"].find(
           ({ id }) => id.toString() === payload.id.toString()
@@ -91,8 +89,6 @@ export const moviesSlice = createSlice({
       })
       .addCase(addMovie.rejected, (state, action) => {
         state.isLoading = false;
-        // console.log("rj-ACTION: ", action);
-        // console.log("rj-PAYLOAD: ", action.payload);
         state.error = action.payload?.errorMessage;
 
         getLang() === "en-US"
@@ -102,13 +98,11 @@ export const moviesSlice = createSlice({
       .addCase(setGenres.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // console.log(payload);
         state.genres[payload.language] = payload.genres;
       })
       .addCase(setGenres.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload?.errorMessage;
-        // console.log(payload);
       })
       .addCase(setGenres.pending, (state) => {
         state.isLoading = true;

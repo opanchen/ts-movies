@@ -29,9 +29,6 @@ export const SharedLayout: React.FC = () => {
 
   useEffect(() => {
     if (allGenres[lang] && allGenres[lang].length !== 0) {
-      // console.log(
-      //   "Genres are already in redux-state. Do not dispatch! Return from func."
-      // );
       return;
     }
 

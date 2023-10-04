@@ -56,7 +56,7 @@ const Movies: React.FC = () => {
             language: lang,
             page: i + 1,
           });
-          // if (!data) throw new Error("There is no fetched data.");
+
           if (!data || data.results.length === 0) {
             const errorMessage =
               lang === "en-US"
@@ -79,7 +79,6 @@ const Movies: React.FC = () => {
           }
 
           resultsArr.push(...data.results);
-          // console.log(`Fetch operation for page ${i + 1}...`);
         }
 
         // Additional filter-operation to prevent response movie-items duplication inside main array:
@@ -98,7 +97,6 @@ const Movies: React.FC = () => {
 
           return uniqueResults;
         });
-        // console.log("Movies have been updated.");
       } catch (error) {
         console.log(error);
         const errorMessage =
@@ -164,61 +162,6 @@ const Movies: React.FC = () => {
 
     // Determine which dependency array variable causes server request: 'loading more' operation or UI-language change.
     isLoadingMore.current === false ? loadMovies() : loadMoreMovies();
-
-    // const loadMovies = async () => {
-    //   setIsLoading(true);
-
-    //   try {
-    //     const data = await moviesAPI.getMoviesByQuery({
-    //       query,
-    //       language: lang,
-    //       page,
-    //     });
-    //     // console.log(data);
-
-    //     if (!data || data.results.length === 0) {
-    //       const errorMessage =
-    //         lang === "en-US"
-    //           ? "Movies with this query weren't found. Please enter valid query and try again!"
-    //           : "Фільмів за даним запитом не знайдено. Будь ласка, введіть валідний запит та спробуйте знову!";
-    //       setError(errorMessage);
-    //       return;
-    //     }
-
-    //     const { results, total_pages, total_results } = data;
-
-    //     setMovies((prevMovies) => {
-    //       // Additional filter-operation to prevent response movie-items duplication inside main array:
-    //       const filteredResults = results.filter((item) => {
-    //         return prevMovies.map(({ id }) => id).indexOf(item.id) === -1;
-    //       });
-
-    //       return [...prevMovies, ...filteredResults];
-    //     });
-
-    //     if (totalPages !== total_pages) setTotalPages(total_pages);
-
-    //     if (totalResults !== total_results) {
-    //       const message =
-    //         lang === "en-US"
-    //           ? `Number of successful search results: ${total_results}!`
-    //           : `Кількість успішних результатів пошуку: ${total_results}!`;
-
-    //       toast.success(message);
-    //       setTotalResults(total_results);
-    //     }
-    //   } catch (error) {
-    //     console.log(error);
-    //     const errorMessage =
-    //       lang === "en-US"
-    //         ? "Something went wrong. Please try again later!"
-    //         : "Щось пішло не так... Будь ласка, повторіть спробу пізніше!";
-    //     setError(errorMessage);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // loadMovies();
   }, [lang, page, query, totalPages, totalResults]);
 
   const handleLoadMore = () => {

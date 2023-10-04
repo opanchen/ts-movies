@@ -11,13 +11,12 @@ import {
 import css from "./Collection.module.css";
 
 const Collection: React.FC = () => {
-  const { lang } = useLangState();
   const [page, setPage] = useState<number>(1);
-
+  const { lang } = useLangState();
   const moviesEn = useAppSelector(selectCollectionEn);
   const moviesUk = useAppSelector(selectCollectionUk);
+
   const movies = lang === "en-US" ? moviesEn : moviesUk;
-  //   console.log("EN Collection: ", movies);
 
   const perPage: number = 20;
   const totalPages: number = Math.ceil(movies.length / perPage);
@@ -27,7 +26,6 @@ const Collection: React.FC = () => {
     const lastIndex = page * perPage - 1;
     return movies.slice(firstIndex, lastIndex + 1);
   }, [movies, page]);
-  // console.log("first index: ", firstIndex);
 
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
