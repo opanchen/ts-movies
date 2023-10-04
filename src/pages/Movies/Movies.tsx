@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLangState } from "src/hooks";
 import { moviesAPI } from "src/services/moviesAPI";
+import { Helmet } from "react-helmet";
 import {
   Container,
   FallbackView,
@@ -247,29 +248,38 @@ const Movies: React.FC = () => {
       : "Наразі фільми відсутні. Введіть Ваш запит для пошуку...";
 
   return (
-    <section className={css.section}>
-      <Container>
-        <h1 className="visually-hidden">
-          {lang === "en-US" ? "Search movies" : "Пошук фільмів"}
-        </h1>
-        <div className={css["form-wrapper"]}>
-          <SearchForm onSubmit={onSearchFormSubmit} />
-        </div>
-        {isLoading && <Spinner />}
-        {error && <FallbackView type="error" message={error} />}
-        {!error && movies.length === 0 && (
-          <FallbackView type="init" message={defaultFallbackMessage} />
-        )}
-        {!error && movies.length > 0 && (
-          <>
-            <MovieList movies={movies} />
-            {page !== totalPages && (
-              <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={isLoading} />
-            )}
-          </>
-        )}
-      </Container>
-    </section>
+    <>
+      <Helmet>
+        <title>{lang === "en-US" ? "Movies" : "Фільми"}</title>
+      </Helmet>
+
+      <section className={css.section}>
+        <Container>
+          <h1 className="visually-hidden">
+            {lang === "en-US" ? "Search movies" : "Пошук фільмів"}
+          </h1>
+          <div className={css["form-wrapper"]}>
+            <SearchForm onSubmit={onSearchFormSubmit} />
+          </div>
+          {isLoading && <Spinner />}
+          {error && <FallbackView type="error" message={error} />}
+          {!error && movies.length === 0 && (
+            <FallbackView type="init" message={defaultFallbackMessage} />
+          )}
+          {!error && movies.length > 0 && (
+            <>
+              <MovieList movies={movies} />
+              {page !== totalPages && (
+                <LoadMoreBtn
+                  onLoadMore={handleLoadMore}
+                  isLoading={isLoading}
+                />
+              )}
+            </>
+          )}
+        </Container>
+      </section>
+    </>
   );
 };
 

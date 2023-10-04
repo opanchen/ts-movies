@@ -4,6 +4,7 @@ import { selectCollectionEn } from "src/redux/selectors";
 import { isMovieCollected } from "src/helpers";
 import { useAppSelector, useLangState } from "src/hooks";
 import { moviesAPI } from "src/services/moviesAPI";
+import { Helmet } from "react-helmet";
 import {
   BackLinkBtn,
   CollectBnt,
@@ -52,24 +53,30 @@ const MovieDetails: React.FC = () => {
   }, [lang, movieId]);
 
   return (
-    <div className={css.wrapper}>
-      <Container>
-        <div className={css["btn-bar"]}>
-          <BackLinkBtn />
-          {!error && movieId && movie && (
-            <CollectBnt id={movieId} isCollected={isCollected} />
-          )}
-        </div>
-      </Container>
-      {isLoading && <Spinner />}
-      {error && <FallbackView type="error" message={error} />}
-      {!error && movie && (
-        <>
-          <MovieArticle movie={movie} />
-          <MovieExtraInfo />
-        </>
-      )}
-    </div>
+    <>
+      <Helmet>
+        <title>{lang === "en-US" ? "Movie details" : "Деталі фільму"}</title>
+      </Helmet>
+
+      <div className={css.wrapper}>
+        <Container>
+          <div className={css["btn-bar"]}>
+            <BackLinkBtn />
+            {!error && movieId && movie && (
+              <CollectBnt id={movieId} isCollected={isCollected} />
+            )}
+          </div>
+        </Container>
+        {isLoading && <Spinner />}
+        {error && <FallbackView type="error" message={error} />}
+        {!error && movie && (
+          <>
+            <MovieArticle movie={movie} />
+            <MovieExtraInfo />
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

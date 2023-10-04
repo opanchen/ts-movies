@@ -1,5 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { setGenres } from "src/redux/operations";
 import { selectAllGenres } from "src/redux/selectors";
 import {
@@ -38,27 +39,33 @@ export const SharedLayout: React.FC = () => {
   }, [allGenres, dispatch, lang]);
 
   return (
-    <div data-theme={theme} className={css.layout}>
-      <header className={css.header}>
-        <Container>
-          <AppBar />
-        </Container>
-      </header>
+    <>
+      <Helmet>
+        {lang === "en-US" ? <html lang="en" /> : <html lang="uk" />}
+      </Helmet>
 
-      <main className={css["main-content"]}>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Outlet />
-          </Suspense>
-        </ErrorBoundary>
-      </main>
+      <div data-theme={theme} className={css.layout}>
+        <header className={css.header}>
+          <Container>
+            <AppBar />
+          </Container>
+        </header>
 
-      <ToastContainer autoClose={3000} />
-      <ScrollUpBtn />
+        <main className={css["main-content"]}>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
+        </main>
 
-      <footer className={css.footer}>
-        <Footer />
-      </footer>
-    </div>
+        <ToastContainer autoClose={3000} />
+        <ScrollUpBtn />
+
+        <footer className={css.footer}>
+          <Footer />
+        </footer>
+      </div>
+    </>
   );
 };

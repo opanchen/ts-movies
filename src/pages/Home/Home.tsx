@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 import {
   Container,
   FallbackView,
@@ -134,21 +135,30 @@ const Home: React.FC = () => {
     lang === "en-US" ? "Popular movies" : "Популярні фільми";
 
   return (
-    <section className={css.section}>
-      <Container>
-        <h1 className={css.heading}>{headingTextContent}</h1>
-        {isLoading && <Spinner />}
-        {error && <FallbackView type="error" message={error} />}
-        {!error && movies.length > 0 && (
-          <>
-            <MovieList movies={movies} />
-            {page !== totalPages && (
-              <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={isLoading} />
-            )}
-          </>
-        )}
-      </Container>
-    </section>
+    <>
+      <Helmet>
+        <title>{lang === "en-US" ? "Home" : "Головна"}</title>
+      </Helmet>
+
+      <section className={css.section}>
+        <Container>
+          <h1 className={css.heading}>{headingTextContent}</h1>
+          {isLoading && <Spinner />}
+          {error && <FallbackView type="error" message={error} />}
+          {!error && movies.length > 0 && (
+            <>
+              <MovieList movies={movies} />
+              {page !== totalPages && (
+                <LoadMoreBtn
+                  onLoadMore={handleLoadMore}
+                  isLoading={isLoading}
+                />
+              )}
+            </>
+          )}
+        </Container>
+      </section>
+    </>
   );
 };
 

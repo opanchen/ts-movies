@@ -1,5 +1,7 @@
 import { useAppSelector, useLangState } from "src/hooks";
 import { selectCollectionEn, selectCollectionUk } from "src/redux/selectors";
+import { useMemo, useState } from "react";
+import { Helmet } from "react-helmet";
 import {
   Container,
   FallbackView,
@@ -7,7 +9,6 @@ import {
   MovieList,
 } from "src/components";
 import css from "./Collection.module.css";
-import { useMemo, useState } from "react";
 
 const Collection: React.FC = () => {
   const { lang } = useLangState();
@@ -41,21 +42,27 @@ const Collection: React.FC = () => {
       : "Збережені фільми відсутні. Відвідайте іншу сторінку та оберіть декілька фільмів, щоб поповнити колекцію.";
 
   return (
-    <section className={css.section}>
-      <Container>
-        <h1 className={css.heading}>{headingTextContent}</h1>
-        {movies.length > 0 ? (
-          <>
-            <MovieList movies={filteredMovies} />
-            {page !== totalPages && (
-              <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={false} />
-            )}
-          </>
-        ) : (
-          <FallbackView type="init" message={errorMessage} />
-        )}
-      </Container>
-    </section>
+    <>
+      <Helmet>
+        <title>{lang === "en-US" ? "Collection" : "Колекція"}</title>
+      </Helmet>
+
+      <section className={css.section}>
+        <Container>
+          <h1 className={css.heading}>{headingTextContent}</h1>
+          {movies.length > 0 ? (
+            <>
+              <MovieList movies={filteredMovies} />
+              {page !== totalPages && (
+                <LoadMoreBtn onLoadMore={handleLoadMore} isLoading={false} />
+              )}
+            </>
+          ) : (
+            <FallbackView type="init" message={errorMessage} />
+          )}
+        </Container>
+      </section>
+    </>
   );
 };
 
