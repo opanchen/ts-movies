@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Cinema App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**[VIEW LIVE PAGE](https://opanchen.github.io/ts-movies/)**
 
-## Available Scripts
+The application gives the user an opportunity to find information about movies, follow trends, watch video trailers, save favorite articles in a personal collection based on local storage, etc.
 
-In the project directory, you can run:
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2kwNnJ0ZXJjOG9lcmJpanc1amQza2loZXM4YXA5eWw1cWw3c2NrYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ueJ5c10B2BCQdunMfW/giphy-downsized-large.gif)
 
-### `npm start`
+## Creating
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project was created with [Create React App](https://github.com/facebook/create-react-app) and [Typescript](https://www.typescriptlang.org/docs/). To get
+acquainted and configure additional features
+[refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`npm install --save typescript @types/react @types/react-dom` command was used to implement types in the project. Also for initial configuration was created file **`tsconfig.json`**.
 
-### `npm test`
+Added **`404.html`** file and the corresponding script in index.html to handle the 404 error when the page is reloaded.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+App routing and navigation structure was inplemented with [React Router Dom](https://www.npmjs.com/package/react-router-dom) using additional types package `npm install --save-dev @types/react-router-dom` and code splitting with **`React.lazy`** & **`React.Suspense`**.
 
-### `npm run build`
+**`@types`** folder was created in the root derictory with files **`custom.d.ts`** & **`declaration.d.ts`** to be able to use correctly non-js files (`.svg`, `.png`, `.css`, etc) and implement imports for them.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As global data source was used **[TMDB](https://www.themoviedb.org/)** service. All fetch operations were implemented in **`moviesAPI.ts`** file.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Storing genres or movies data was implemented using [RTK](https://redux-toolkit.js.org/usage/usage-with-typescript) and [Redux Persist](https://www.npmjs.com/package/redux-persist). Special typed hooks **`UseAppDispatch()`** and **`UseAppSelector()`** were created and used inside components instead of the usual ones for correct app work.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The changes of UI theme mode or language mode were implemented with [React Context Provider](https://react.dev/reference/react/createContext) and custom hooks **`UseYhemeState()`** & **`UseLangState()`**.
 
-### `npm run eject`
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXBtdnRxZ29oampyeTgzNmVyd2g0N2JkYXBybGRsZDFsMndqNDU5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jBPb529xc6eckP33YH/giphy-downsized-large.gif) ![](https://media.giphy.com/media/fKAs57AyI7bNg4YMdf/giphy-downsized-large.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Dependencies and technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- _Axios_
+- _gh-pages_
+- _React_
+- _React Dom_
+- _React Helmet_
+- _React Icons_
+- _React loader spinner_
+- _React Player_
+- _React Redux_
+- _React Router Dom_
+- _React Slick_
+- _React Toastify_
+- _Redux Persist_
+- _Redux Toolkit_
+- _Slick Carousel_
+- _Typescript_
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+... and more. Full list of dependencies and additional information is available in **`package.json`** file.
