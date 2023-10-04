@@ -56,8 +56,7 @@ const Movies: React.FC = () => {
   };
 
   useEffect(() => {
-    // if (!query) return;
-    if (!query) throw new Error("Oooooops! There is no query. Test error.");
+    if (!query) return;
 
     const loadMovies = async () => {
       try {

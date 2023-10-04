@@ -17,9 +17,6 @@ export class ErrorBoundary extends Component<IProps, IState> {
     this.state = { hasError: false };
   }
 
-  errorMessage =
-    getLang() === "en-US" ? "Something went wrong." : "Щось пішло не так.";
-
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Display fallback UI
     console.log("ErrorBoundary caught an error: ", error, errorInfo);
@@ -32,7 +29,14 @@ export class ErrorBoundary extends Component<IProps, IState> {
         <>
           <Container>
             <div className={css.wrapper}>
-              <FallbackView type="error" message={this.errorMessage} />
+              <FallbackView
+                type="error"
+                message={
+                  getLang() === "en-US"
+                    ? "Something went wrong."
+                    : "Щось пішло не так."
+                }
+              />
               <a className={css.link} href="/ts-movies/">
                 {getLang() === "en-US" ? "Reload" : "Перезавантажити"}
               </a>
