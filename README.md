@@ -24,7 +24,7 @@ As global data source was used **[TMDB](https://www.themoviedb.org/)** service. 
 
 Storing genres or movies data was implemented using [RTK](https://redux-toolkit.js.org/usage/usage-with-typescript) and [Redux Persist](https://www.npmjs.com/package/redux-persist). Special typed hooks **`UseAppDispatch()`** and **`UseAppSelector()`** were created and used inside components instead of the usual ones for correct app work.
 
-The changes of UI theme mode or language mode were implemented with [React Context Provider](https://react.dev/reference/react/createContext) and custom hooks **`UseYhemeState()`** & **`UseLangState()`**.
+The changes of UI theme mode or language mode were implemented with [React Context Provider](https://react.dev/reference/react/createContext) and custom hooks **`UseThemeState()`** & **`UseLangState()`**.
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXBtdnRxZ29oampyeTgzNmVyd2g0N2JkYXBybGRsZDFsMndqNDU5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jBPb529xc6eckP33YH/giphy-downsized-large.gif) ![](https://media.giphy.com/media/fKAs57AyI7bNg4YMdf/giphy-downsized-large.gif)
 
